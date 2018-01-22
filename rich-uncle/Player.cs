@@ -34,15 +34,13 @@ namespace rich_uncle
                     throw new ArgumentOutOfRangeException();
             }
         }
-        public Player(FormMain mainForm, Color moveColor, short posX, short posY,
+        public Player(FormMain mainForm, Color moveColor, 
             short widthX = 10, short widthY = 10)
         {
             this.mainForm = mainForm;
             g = mainForm.CreateGraphics();
             this.moveColor = new SolidBrush(moveColor);
             formColor = new SolidBrush(mainForm.BackColor);
-            this.posX = posX;
-            this.posY = posY;
             this.widthX = widthX;
             this.widthY = widthY;
             currentHouse = 0; // not playing just yet
@@ -53,9 +51,11 @@ namespace rich_uncle
         public void initialPoisitioning()
         {
             initPosLock.WaitOne();
-            Point curr = InitialPoisition;
+            Point curr = InitialPoisition; // using the property in glv
             initPosLock.Release();
-            g.FillEllipse(moveColor, curr.X, curr.Y, widthX, widthY);
+            posX = (short)curr.X;
+            posY = (short)curr.Y;
+            g.FillEllipse(moveColor, posX, posY, widthX, widthY);
         }
         public void startPlaying()
         {
@@ -64,15 +64,15 @@ namespace rich_uncle
             {
                 Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
                 Point dest;
-                if (currentHouse == 0)
+                if (currentHouse == 0) // before the game starts
                 {
                     dest = mainForm.getHouseLocation(NumberOfMovements);
                 }
-                else if (currentHouse + NumberOfMovements > 40)
+                else if (currentHouse + NumberOfMovements > 40) // another round of play
                 {
                     dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) % 40));
                 }
-                else
+                else // still on the same round
                 {
                     dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse)));
                 }
