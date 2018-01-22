@@ -104,6 +104,10 @@ namespace rich_uncle
                     return new Point(0, 0);
             }
         }
+
+        
+
+
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(Environment.ExitCode);
@@ -111,18 +115,18 @@ namespace rich_uncle
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            Graphics g = this.CreateGraphics();
-            Brush b = new SolidBrush(Color.Red);
-            int x = 12;
-            g.FillEllipse(b, x, 25, 10, 10);
-            label10.BackColor = Color.Transparent;
-            while (x < 500)
+            GlobalVariables glv = new GlobalVariables(this);
+            Player[] p = new Player[4];
+            Thread[] t = new Thread[4];
+            Color[] c = { Color.Red, Color.Blue, Color.Green, Color.Yellow };
+            for (int i = 0; i < 4; i++)
             {
-                g.FillEllipse(new SolidBrush(this.BackColor), x, 25, 10, 10);
-                x += 2;
-                g.FillEllipse(b, x, 25, 10, 10);
-                Thread.Sleep(5);
+                p[i] = new Player(this, c[i]);
+                t[i] = new Thread(new ThreadStart(p[i].initialPoisitioning));
+                t[i].Name = (i + 1).ToString();
             }
+            for (int i = 0; i < 4; i++)
+                t[i].Start();
         }
     }
 }
