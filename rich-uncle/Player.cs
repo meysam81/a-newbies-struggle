@@ -19,9 +19,25 @@ namespace rich_uncle
         private short currentHouse;
         private short ownedRedHouses, ownedBlueHouses,
             ownedYellowHouses, ownedGreenHouses;
-        public Player(Form mainForm, Color moveColor, short posX, short posY,
+        FormMain mainForm; // to get the house location
+        public short NumberOfMovements// after rolling the dice
+        {
+            get
+            {
+                return NumberOfMovements;
+            }
+            set
+            {
+                if (value >= 1 && value <= 6)
+                    NumberOfMovements = value;
+                else
+                    throw new ArgumentOutOfRangeException();
+            }
+        }
+        public Player(FormMain mainForm, Color moveColor, short posX, short posY,
             short widthX = 10, short widthY = 10)
         {
+            this.mainForm = mainForm;
             g = mainForm.CreateGraphics();
             this.moveColor = new SolidBrush(moveColor);
             formColor = new SolidBrush(mainForm.BackColor);
@@ -38,9 +54,20 @@ namespace rich_uncle
         {
             while (true)
             {
-                allowToMove.WaitOne();
-
-
+                Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
+                Point dest;
+                if (currentHouse == 0)
+                {
+                    dest = mainForm.getHouseLocation(NumberOfMovements);
+                }
+                else if (currentHouse + NumberOfMovements > 40)
+                {
+                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) % 40));
+                }
+                else
+                {
+                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse)));
+                }
             }
         }
 
