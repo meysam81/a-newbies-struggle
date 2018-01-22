@@ -64,6 +64,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -77,6 +78,111 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\furniture-store.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\department-store.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\fish-market.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\grocery-chain.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\shoe-shine-stand.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\dairy.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\5000-win.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\barber-shop.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\radio-station.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\flourish-shops.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\telephone-co.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\air-line.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\taxi-fleet.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\consult.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\railroad-line.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\street-car-line.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\bus-line.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\circus.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\book-of-the-year.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\newspaper.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\baseball-club.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\weekly-magazine.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\steel-co.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\tire-co.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\electric-co.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\tv-set-co.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\watch-co.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\oil-weel.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\farm.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\diamond-farm.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\orange-grove.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\plantation-farm.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\3000-win.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\1000-lose.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="bin\images\1500-lose.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
