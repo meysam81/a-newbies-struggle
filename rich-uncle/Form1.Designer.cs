@@ -33,8 +33,8 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.labelDice = new System.Windows.Forms.Label();
-            this.labelPlayers = new System.Windows.Forms.Label();
+            this.labelShow1 = new System.Windows.Forms.Label();
+            this.labelShow2 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -72,6 +72,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.labelShow3 = new System.Windows.Forms.Label();
+            this.labelDice = new System.Windows.Forms.Label();
+            this.labelPlayers = new System.Windows.Forms.Label();
             this.labelBank = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
@@ -136,27 +139,25 @@
             this.label9.Text = "9";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelDice
+            // labelShow1
             // 
-            this.labelDice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelDice.Location = new System.Drawing.Point(688, 20);
-            this.labelDice.Name = "labelDice";
-            this.labelDice.Size = new System.Drawing.Size(54, 49);
-            this.labelDice.TabIndex = 2;
-            this.labelDice.Text = "Dice";
-            this.labelDice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelShow1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow1.Location = new System.Drawing.Point(666, 13);
+            this.labelShow1.Name = "labelShow1";
+            this.labelShow1.Size = new System.Drawing.Size(54, 21);
+            this.labelShow1.TabIndex = 2;
+            this.labelShow1.Text = "Dice";
+            this.labelShow1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelPlayers
+            // labelShow2
             // 
-            this.labelPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelPlayers.Location = new System.Drawing.Point(646, 81);
-            this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(96, 112);
-            this.labelPlayers.TabIndex = 2;
-            this.labelPlayers.Text = "Players";
-            this.labelPlayers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelShow2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow2.Location = new System.Drawing.Point(646, 81);
+            this.labelShow2.Name = "labelShow2";
+            this.labelShow2.Size = new System.Drawing.Size(96, 18);
+            this.labelShow2.TabIndex = 2;
+            this.labelShow2.Text = "Players";
+            this.labelShow2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -639,15 +640,44 @@
             this.label1.Text = "1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // labelShow3
+            // 
+            this.labelShow3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow3.Location = new System.Drawing.Point(666, 203);
+            this.labelShow3.Name = "labelShow3";
+            this.labelShow3.Size = new System.Drawing.Size(54, 17);
+            this.labelShow3.TabIndex = 2;
+            this.labelShow3.Text = "Bank";
+            this.labelShow3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelDice
+            // 
+            this.labelDice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelDice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelDice.Location = new System.Drawing.Point(666, 34);
+            this.labelDice.Name = "labelDice";
+            this.labelDice.Size = new System.Drawing.Size(54, 39);
+            this.labelDice.TabIndex = 2;
+            this.labelDice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelPlayers
+            // 
+            this.labelPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelPlayers.Location = new System.Drawing.Point(646, 99);
+            this.labelPlayers.Name = "labelPlayers";
+            this.labelPlayers.Size = new System.Drawing.Size(96, 94);
+            this.labelPlayers.TabIndex = 2;
+            this.labelPlayers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // labelBank
             // 
             this.labelBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelBank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelBank.Location = new System.Drawing.Point(688, 208);
+            this.labelBank.Location = new System.Drawing.Point(666, 220);
             this.labelBank.Name = "labelBank";
-            this.labelBank.Size = new System.Drawing.Size(54, 49);
+            this.labelBank.Size = new System.Drawing.Size(54, 46);
             this.labelBank.TabIndex = 2;
-            this.labelBank.Text = "Bank";
             this.labelBank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FormMain
@@ -659,8 +689,11 @@
             this.CancelButton = this.buttonExit;
             this.ClientSize = new System.Drawing.Size(754, 556);
             this.Controls.Add(this.labelPlayers);
+            this.Controls.Add(this.labelShow2);
             this.Controls.Add(this.labelBank);
+            this.Controls.Add(this.labelShow3);
             this.Controls.Add(this.labelDice);
+            this.Controls.Add(this.labelShow1);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.label8);
@@ -714,9 +747,9 @@
         #endregion
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Label labelDice;
-        private System.Windows.Forms.Label labelPlayers;
-        private System.Windows.Forms.Label labelBank;
+        private System.Windows.Forms.Label labelShow1;
+        private System.Windows.Forms.Label labelShow2;
+        private System.Windows.Forms.Label labelShow3;
         public System.Windows.Forms.Label label1;
         public System.Windows.Forms.Label label2;
         public System.Windows.Forms.Label label3;
@@ -757,6 +790,9 @@
         public System.Windows.Forms.Label label38;
         public System.Windows.Forms.Label label39;
         public System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label labelDice;
+        private System.Windows.Forms.Label labelPlayers;
+        private System.Windows.Forms.Label labelBank;
     }
 }
 
