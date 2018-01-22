@@ -50,8 +50,16 @@ namespace rich_uncle
             // not owning any house yet
             ownedBlueHouses = ownedGreenHouses = ownedRedHouses = ownedYellowHouses = 0;
         }
+        public void initialPoisitioning()
+        {
+            initPosLock.WaitOne();
+            Point curr = InitialPoisition;
+            initPosLock.Release();
+            g.FillEllipse(moveColor, curr.X, curr.Y, widthX, widthY);
+        }
         public void startPlaying()
         {
+            initialPoisitioning(); // get ready to play!
             while (true)
             {
                 Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
