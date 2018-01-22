@@ -11,11 +11,14 @@ namespace rich_uncle
 {
     class Player
     {
-        private enum direction { UP, RIGHT, DOWN, LEFT};
+        private enum direction { UP, RIGHT, DOWN, LEFT };
         private short posX, posY;
         private short widthX, widthY;
         private Graphics g;
         private Brush moveColor, formColor;
+        private short currentHouse;
+        private short ownedRedHouses, ownedBlueHouses,
+            ownedYellowHouses, ownedGreenHouses;
         public Player(Form mainForm, Color moveColor, short posX, short posY,
             short widthX = 10, short widthY = 10)
         {
@@ -26,10 +29,19 @@ namespace rich_uncle
             this.posY = posY;
             this.widthX = widthX;
             this.widthY = widthY;
+            currentHouse = 0; // not playing just yet
+
+            // not owning any house yet
+            ownedBlueHouses = ownedGreenHouses = ownedRedHouses = ownedYellowHouses = 0;
         }
         public void startPlaying()
         {
+            while (true)
+            {
+                allowToMove.WaitOne();
 
+
+            }
         }
 
         // helper function for the class itself, not going to be used outside
@@ -41,7 +53,7 @@ namespace rich_uncle
                     while (posY > destinationY)
                     {
                         // clean current  position
-                        g.FillEllipse(formColor, posX, posY, widthX, widthY); 
+                        g.FillEllipse(formColor, posX, posY, widthX, widthY);
 
                         posY -= 2;
 
