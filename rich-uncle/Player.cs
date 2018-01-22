@@ -31,7 +31,7 @@ namespace rich_uncle
                 if (value >= 1 && value <= 6)
                     NumberOfMovements = value;
                 else
-                    throw new ArgumentOutOfRangeException();
+                    throw new Exception("Dice must be between 1-6 inclusively");
             }
         }
         public Player(FormMain mainForm, Color moveColor, 
@@ -70,7 +70,8 @@ namespace rich_uncle
                 }
                 else if (currentHouse + NumberOfMovements > 40) // another round of play
                 {
-                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) % 40));
+                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) % 
+                        NumberOfHouses));
                 }
                 else // still on the same round
                 {
