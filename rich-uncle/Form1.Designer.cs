@@ -736,6 +736,8 @@
             this.Controls.Add(this.label9);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(770, 595);
+            this.MinimumSize = new System.Drawing.Size(770, 595);
             this.Name = "FormMain";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
