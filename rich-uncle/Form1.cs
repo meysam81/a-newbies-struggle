@@ -15,6 +15,7 @@ namespace rich_uncle
         public FormMain()
         {
             InitializeComponent();
+            CheckForIllegalCrossThreadCalls = false;
         }
         public Point getHouseLocation(short number) // to get the location of the houses
         {
@@ -105,8 +106,9 @@ namespace rich_uncle
             }
         }
 
-        
-
+        // for every player in the game
+        Thread[] t;
+        Player[] p;
 
         private void buttonExit_Click(object sender, EventArgs e)
         {
@@ -115,21 +117,92 @@ namespace rich_uncle
 
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            Color[] houseColours = new Color[GlobalVariables.NumberOfHouses];
+            if (!init())
+                return;
+            
+
+            Color[] houseColours; // going to be initialized in glv constructor, with the 'out' keyword
             GlobalVariables glv = new GlobalVariables(this, out houseColours);
-            Player[] p = new Player[4];
-            Thread[] t = new Thread[4];
-            Color[] c = { Color.Red, Color.Blue, Color.Green, Color.Yellow };
-            for (int i = 0; i < 4; i++)
+
+            paintHouses(houseColours); // rondom colorization of 40 houses
+
+            p = new Player[GlobalVariables.NumberOfPlayers];
+            t = new Thread[GlobalVariables.NumberOfPlayers];
+
+            // DON't mess with the order, we use this order in the game
+            Color[] c = { Color.Blue, Color.Green, Color.Red, Color.Yellow };
+
+
+            for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++)
             {
                 p[i] = new Player(this, c[i]);
-                t[i] = new Thread(new ThreadStart(p[i].initialPoisitioning));
+                t[i] = new Thread(new ThreadStart(p[i].startPlaying));
                 t[i].Name = (i + 1).ToString();
             }
-            for (int i = 0; i < 4; i++)
-                t[i].Start();
-            paintHouses(houseColours);
+            for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++) 
+                t[i].Start(); // players start playing
+
+            Thread turnThrd = new Thread(new ThreadStart(chooseTurn));
+            turnThrd.Start(); // start rolling dices
         }
+
+        
+        // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
+        public bool GotInfo { get; set; }
+        private bool init() // get config's from user
+        {
+            getInfo gf = new getInfo(this);
+            gf.ShowDialog();
+
+            if (!GotInfo)
+            {
+                MessageBox.Show("Please enter correct input!", "Wrong info received",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            return true;
+        }
+
+        private void chooseTurn()
+        {
+            string[] playersName = { "Blue: ", "Green: ", "Red: ", "Yellow: " };
+            int[] playersPoints = new int[GlobalVariables.NumberOfPlayers];
+
+
+            bool continuePlaying = false; // just for test
+            do
+            {
+                writeResultOfPlayers(playersName, playersPoints);
+                try
+                {
+                    t[2].Resume();
+                }
+                catch (Exception ex) { } // just in case, if something goes wrong
+            } while (continuePlaying);
+        }
+
+        // print the game result for user
+        private void writeResultOfPlayers(string[] names, int[] points)
+        {
+            labelPlayers.Text = string.Format(
+                "{0}: {1}\n" +
+                "{2}: {3}\n",
+                names[0], points[0],
+                names[1], points[1]);
+            if (GlobalVariables.NumberOfPlayers > 2)
+            {
+                labelPlayers.Text += string.Format(
+                "{0}: {1}\n",
+                names[2], points[2]);
+                if (GlobalVariables.NumberOfPlayers > 3)
+                    labelPlayers.Text += string.Format(
+                        "{0}: {1}\n",
+                        names[3], points[3]);
+            }
+        }
+
+        // colorize the 40 houses
         private void paintHouses(Color[] houseColors)
         {
             for (int number = 1; number <= GlobalVariables.NumberOfHouses; number++)
