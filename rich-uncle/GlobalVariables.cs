@@ -100,6 +100,10 @@ namespace rich_uncle
             //paintHouses(form);
             houseColours // form array
                 = houseColors; // glv array
+
+            playerDepositLock = new Semaphore[NumberOfPlayers];
+            for (short i = 0; i < NumberOfPlayers; i++)
+                playerDepositLock[i] = new Semaphore(1, 1);
         }
         public static Point InitialPoisition
         {
@@ -115,6 +119,7 @@ namespace rich_uncle
         // ====================================== public semaphore ==========================================
         // only one player can move at the same time
         public static Semaphore initPosLock = new Semaphore(1, 1);
-        
+        public static Semaphore[] playerDepositLock;
+
     }
 }
