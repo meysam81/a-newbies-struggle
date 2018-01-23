@@ -34,11 +34,12 @@ namespace rich_uncle
                     throw new Exception("Dice must be between 1-6 inclusively");
             }
         }
-        public Player(FormMain mainForm, Color moveColor, 
+        public Player(FormMain mainForm, Color moveColor,
             short widthX = 10, short widthY = 10)
         {
             this.mainForm = mainForm;
             g = mainForm.CreateGraphics();
+            MoveColor = moveColor;
             this.moveColor = new SolidBrush(moveColor);
             formColor = new SolidBrush(mainForm.BackColor);
             this.widthX = widthX;
@@ -66,11 +67,39 @@ namespace rich_uncle
                 Point dest;
                 if (currentHouse == 0) // before the game starts
                 {
-                    dest = mainForm.getHouseLocation(NumberOfMovements);
+                    dest = mainForm.getHouseLocation(2); // CHANGE number 2
+                    move((short)(posX + 11), posY, direction.RIGHT);
+                    if (posY < 445)
+                        move(posX, 445, direction.DOWN);
+                    else
+                        move(posX, 445, direction.UP);
+                    if (posX < 560)
+                        move(560, posY, direction.RIGHT);
+                    if (posY > 340)
+                        move(posX, 335, direction.UP);
+                    if (posX > 15)
+                        move(15, posY, direction.LEFT);
+                    if (posY > 235)
+                        move(posX, 225, direction.UP);
+                    if (posX < 560)
+                        move(560, posY, direction.RIGHT);
+                    if (posY > 115)
+                        move(posX, 115, direction.UP);
+                    if (posX > 15)
+                        move(15, posY, direction.LEFT);
+                    if (posY > 5)
+                        move(posX, 5, direction.UP);
+                    if (posX < 560)
+                        move(560, posY, direction.RIGHT);
+                    if (posY < 445)
+                        move(posX, 445, direction.DOWN);
+                    if (posX > 15)
+                        move(15, posY, direction.LEFT);
+
                 }
                 else if (currentHouse + NumberOfMovements > 40) // another round of play
                 {
-                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) % 
+                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) %
                         NumberOfHouses));
                 }
                 else // still on the same round
@@ -79,11 +108,15 @@ namespace rich_uncle
                 }
             }
         }
+        public Color MoveColor { set; get; }
 
         // helper function for the class itself, not going to be used outside
-        private void move(short destinationX, short destinationY, direction upOrRight)
-        {
-            switch (upOrRight) // rotate clockwise from top
+        private void move(short destinationX, short destinationY, direction playerDirection)
+        { // I am proud of this function
+
+            g.FillEllipse(new SolidBrush(Color.BlueViolet), posX, posY, widthX, widthY);
+            Thread.Sleep(300);
+            switch (playerDirection) // rotate clockwise from top
             {
                 case direction.UP: // up
                     while (posY > destinationY)
