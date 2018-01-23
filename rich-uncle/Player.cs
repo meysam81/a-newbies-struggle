@@ -40,6 +40,7 @@ namespace rich_uncle
             }
         }
         public Color MoveColor { set; get; }
+        public int playerDeposit { get; set; }
 
         // =================================== class public functions =======================================
         public Player(FormMain mainForm, Color moveColor,
@@ -69,40 +70,41 @@ namespace rich_uncle
         public void startPlaying()
         {
             initialPoisitioning(); // get ready to play!
+            playerDeposit = PlayersInitialValue;
             while (true)
             {
                 Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
                 Point dest;
                 if (currentHouse == 0) // before the game starts
                 {
-                    dest = mainForm.getHouseLocation(2); // CHANGE number 2
+                    dest = mainForm.getHouseLocation(NumberOfMovements); // CHANGE number 2
                     move((short)(posX + 11), posY, direction.RIGHT);
                     if (posY < 445)
                         move(posX, 445, direction.DOWN);
                     else
                         move(posX, 445, direction.UP);
-                    if (posX < 560)
-                        move(560, posY, direction.RIGHT);
-                    if (posY > 340)
-                        move(posX, 335, direction.UP);
-                    if (posX > 15)
-                        move(15, posY, direction.LEFT);
-                    if (posY > 235)
-                        move(posX, 225, direction.UP);
-                    if (posX < 560)
-                        move(560, posY, direction.RIGHT);
-                    if (posY > 115)
-                        move(posX, 115, direction.UP);
-                    if (posX > 15)
-                        move(15, posY, direction.LEFT);
-                    if (posY > 5)
-                        move(posX, 5, direction.UP);
-                    if (posX < 560)
-                        move(560, posY, direction.RIGHT);
-                    if (posY < 445)
-                        move(posX, 445, direction.DOWN);
-                    if (posX > 15)
-                        move(15, posY, direction.LEFT);
+                    //if (posX < 560)
+                    //    move(560, posY, direction.RIGHT);
+                    //if (posY > 340)
+                    //    move(posX, 335, direction.UP);
+                    //if (posX > 15)
+                    //    move(15, posY, direction.LEFT);
+                    //if (posY > 235)
+                    //    move(posX, 225, direction.UP);
+                    //if (posX < 560)
+                    //    move(560, posY, direction.RIGHT);
+                    //if (posY > 115)
+                    //    move(posX, 115, direction.UP);
+                    //if (posX > 15)
+                    //    move(15, posY, direction.LEFT);
+                    //if (posY > 5)
+                    //    move(posX, 5, direction.UP);
+                    //if (posX < 560)
+                    //    move(560, posY, direction.RIGHT);
+                    //if (posY < 445)
+                    //    move(posX, 445, direction.DOWN);
+                    //if (posX > 15)
+                    //    move(15, posY, direction.LEFT);
 
                 }
                 else if (currentHouse + NumberOfMovements > 40) // another round of play
