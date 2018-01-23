@@ -28,7 +28,7 @@ namespace rich_uncle
         
         // ==================================== class public property =======================================
         public static int NumberOfPlayers { get; set; }
-        public static int BankDeposit { get; set; }
+        public static uint BankDeposit { get; set; }
         public static int PlayersInitialValue { get; set; }
         public static ushort NumberOfHouses
         {
