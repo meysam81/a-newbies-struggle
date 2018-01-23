@@ -144,6 +144,7 @@ namespace rich_uncle
 
             Thread turnThrd = new Thread(new ThreadStart(chooseTurn));
             turnThrd.Start(); // start rolling dices
+            buttonStart.Enabled = false;
         }
 
         
@@ -364,11 +365,11 @@ namespace rich_uncle
             Random generateRandom = new Random(DateTime.Now.Second);
             short result = 0;
             
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 20; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
                 colorizeDiceRoller(back, result);
-                Thread.Sleep(4);
+                Thread.Sleep(5);
             }
             return result;
         }
