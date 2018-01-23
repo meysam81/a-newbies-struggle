@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-
+using static rich_uncle.GlobalVariables;
 namespace rich_uncle
 {
     public partial class FormMain : Form
@@ -134,20 +134,20 @@ namespace rich_uncle
 
             paintHouses(houseColours); // rondom colorization of 40 houses
 
-            p = new Player[GlobalVariables.NumberOfPlayers];
-            t = new Thread[GlobalVariables.NumberOfPlayers];
+            p = new Player[NumberOfPlayers];
+            t = new Thread[NumberOfPlayers];
 
             // DON't mess with the order, we use this order in the game
             Color[] c = { Color.Blue, Color.Green, Color.Red, Color.Yellow };
 
 
-            for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+            for (short i = 0; i < NumberOfPlayers; i++)
             {
-                p[i] = new Player(this, c[i]);
+                p[i] = new Player(this, c[i], i);
                 t[i] = new Thread(new ThreadStart(p[i].startPlaying));
-                t[i].Name = (i + 1).ToString();
+                t[i].Name = i.ToString();
             }
-            for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+            for (int i = 0; i < NumberOfPlayers; i++)
                 t[i].Start(); // players start playing
 
             Thread turnThrd = new Thread(new ThreadStart(chooseTurn));
@@ -177,10 +177,14 @@ namespace rich_uncle
         private void chooseTurn()
         {
             string[] playersName = { "Blue", "Green", "Red", "Yellow" };
-            int[] playersPoints = new int[GlobalVariables.NumberOfPlayers];
+            int[] playersPoints = new int[NumberOfPlayers];
 
-            for (short i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+            for (short i = 0; i < NumberOfPlayers; i++)
+            {
+                playerDepositLock[i].WaitOne();
                 playersPoints[i] = p[i].playerDeposit;
+                playerDepositLock[i].Release();
+            }
 
 
             int[] turns = { -1, -1, -1, -1 };
@@ -190,13 +194,13 @@ namespace rich_uncle
             do
             {
                 writeResultOfPlayers(playersName, playersPoints);
-                showBankDeposit(GlobalVariables.BankDeposit);
+                showBankDeposit(BankDeposit);
                 try
                 {
                     if (firstTime)
                     {
                         short maxDice = 0, firstToMove = -1; // to determine the first player
-                        for (short i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+                        for (short i = 0; i < NumberOfPlayers; i++)
                         {
                             short tmp = rollTheDice(p[i].MoveColor);
                             if (tmp > maxDice)
@@ -211,7 +215,7 @@ namespace rich_uncle
                         p[firstToMove].NumberOfMovements = maxDice;
                         t[firstToMove].Resume();
                         short countTurns = 1;
-                        for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+                        for (int i = 0; i < NumberOfPlayers; i++)
                             if (i != firstToMove)
                                 turns[countTurns++] = i;
                         firstTime = false;
@@ -238,12 +242,12 @@ namespace rich_uncle
                 "{2}: {3}\n",
                 names[0], points[0],
                 names[1], points[1]);
-            if (GlobalVariables.NumberOfPlayers > 2)
+            if (NumberOfPlayers > 2)
             {
                 labelPlayers.Text += string.Format(
                 "{0}: {1}\n",
                 names[2], points[2]);
-                if (GlobalVariables.NumberOfPlayers > 3)
+                if (NumberOfPlayers > 3)
                     labelPlayers.Text += string.Format(
                         "{0}: {1}\n",
                         names[3], points[3]);
@@ -253,7 +257,7 @@ namespace rich_uncle
         // colorize the 40 houses
         private void paintHouses(Color[] houseColors)
         {
-            for (int number = 1; number <= GlobalVariables.NumberOfHouses; number++)
+            for (int number = 1; number <= NumberOfHouses; number++)
             {
                 switch (number)
                 {
