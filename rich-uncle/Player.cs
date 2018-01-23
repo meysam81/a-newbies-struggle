@@ -23,7 +23,7 @@ namespace rich_uncle
 
         FormMain mainForm; // to get the house location
         private short numberOfMovements;
-
+        private short threadNumber;
         // ==================================== class public property =======================================
         public short NumberOfMovements// after rolling the dice
         {
@@ -43,9 +43,10 @@ namespace rich_uncle
         public int playerDeposit { get; set; }
 
         // =================================== class public functions =======================================
-        public Player(FormMain mainForm, Color moveColor,
+        public Player(FormMain mainForm, Color moveColor, short threadNumber,
             short widthX = 10, short widthY = 10)
         {
+            this.threadNumber = threadNumber;
             this.mainForm = mainForm;
             g = mainForm.CreateGraphics();
             MoveColor = moveColor;
@@ -70,7 +71,13 @@ namespace rich_uncle
         public void startPlaying()
         {
             initialPoisitioning(); // get ready to play!
+
+            // get the lock first, to avoid race condition
+            playerDepositLock[threadNumber].WaitOne(); 
             playerDeposit = PlayersInitialValue;
+            playerDepositLock[threadNumber].Release();
+
+
             while (true)
             {
                 Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
