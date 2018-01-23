@@ -28,8 +28,8 @@ namespace rich_uncle
         private void buttonSave_Click(object sender, EventArgs e)
         {
             GlobalVariables.NumberOfPlayers = Convert.ToInt32(numOfPlayers.Value);
-            GlobalVariables.BankDeposit = Convert.ToUInt32(bankDeposit.Value);
-            GlobalVariables.PlayersInitialValue = Convert.ToInt32(playerInitDeposit.Value);
+            GlobalVariables.BankDeposit = (ushort)Convert.ToUInt32(bankDeposit.Value);
+            GlobalVariables.PlayersInitialValue = (short)Convert.ToInt32(playerInitDeposit.Value);
             f.GotInfo = true;
             Close();
         }

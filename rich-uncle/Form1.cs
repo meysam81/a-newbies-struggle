@@ -13,11 +13,10 @@ namespace rich_uncle
     public partial class FormMain : Form
     {
         // ==================================== class private fields ========================================
+
         // for every player in the game
         Thread[] t;
         Player[] p;
-
-
 
         // ================================== class public functions ========================================
         public FormMain()
@@ -115,14 +114,11 @@ namespace rich_uncle
         }
         public bool GotInfo { get; set; }
 
-
-
         // ================================== class private functions =======================================
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(Environment.ExitCode);
         }
-
         private void buttonStart_Click(object sender, EventArgs e)
         {
             if (!init())
@@ -157,7 +153,6 @@ namespace rich_uncle
             buttonStart.Visible = false;
 
         }
-
         // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
         private bool init() // get config's from user
         {
@@ -173,23 +168,20 @@ namespace rich_uncle
 
             return true;
         }
-
         // main function of this class leis here as it rolls the dice and give turn to players
         private void chooseTurn()
         {
             string[] playersName = { "Blue", "Green", "Red", "Yellow" };
-            
-
 
             short[] turns = { -1, -1, -1, -1 };
-
 
             // first dice roll
             writeResultOfPlayers(playersName);
             showBankDeposit(BankDeposit);
 
-            short countTurns = 1;
-            try
+            short countTurns = 0;
+            short nextPosition = 0;
+            try // first roll of the dice
             {
                 short maxDice = 0, firstToMove = -1; // to determine the first player
                 for (short i = 0; i < NumberOfPlayers; i++)
@@ -203,12 +195,24 @@ namespace rich_uncle
                     p[i].NumberOfMovements = tmp; // everyone's turn is determined here
                     Thread.Sleep(1000);
                 }
-                turns[0] = firstToMove;
+
+                turns[countTurns++] = firstToMove;
+
                 colorizeDiceRoller(p[firstToMove].MoveColor, maxDice);
+
+                nextPosition = (short)(p[turns[0]].CurrentHouse + p[turns[0]].NumberOfMovements);
+
                 t[firstToMove].Resume();
+
                 for (short i = 0; i < NumberOfPlayers; i++)
                     if (i != firstToMove)
                         turns[countTurns++] = i;
+
+
+                buyCurrentHouse(turns[0], playersName[turns[0]],
+                    nextPosition); // should we buy?
+                countTurns = 1;
+
             }
             catch (Exception ex)
             {
@@ -218,71 +222,116 @@ namespace rich_uncle
 
 
 
-
-            buyCurrentHouse(turns[0], playersName[turns[0]],
-                (short)(p[turns[0]].CurrentHouse + p[turns[0]].NumberOfMovements)); // should we buy?
-
-
-
-
-            countTurns = 1;
-            bool continuePlaying = false; // just for test
             do
             {
+                if (countTurns >= NumberOfPlayers)
+                    countTurns = 0;
+
                 writeResultOfPlayers(playersName);
                 showBankDeposit(BankDeposit);
 
+                Thread.Sleep(2000); // for the player to see the changes
+
                 try
                 {
+                    short currentTurn = turns[countTurns];
 
+                    p[currentTurn].NumberOfMovements = rollTheDice(p[currentTurn].MoveColor);
+
+                    colorizeDiceRoller(p[currentTurn].MoveColor, p[currentTurn].NumberOfMovements);
+                    nextPosition = (short)((p[currentTurn].CurrentHouse + p[currentTurn].NumberOfMovements) % NumberOfHouses);
+
+                    t[currentTurn].Resume();
+
+                    if (HouseOwner[nextPosition] == -1) // the house is not bought
+                        buyCurrentHouse(currentTurn, playersName[currentTurn], nextPosition);
+                    else // it is bought
+                        buyOrRent(currentTurn, playersName[currentTurn], nextPosition,
+                            playersName[HouseOwner[nextPosition]], HouseOwner[nextPosition]);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.StackTrace, ex.Message + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 } // just in case, if something goes wrong
-            } while (continuePlaying);
+
+                countTurns++;
+            } while (true); // condition is for test ONLY
         }
-
-
-        private void buyCurrentHouse(short player, string playerName, short currPlayerHouse)
+        private void buyCurrentHouse(short playerIndex, string playerName, short houseToBeBougth)
         {
-            ushort cost = BuyHouse[currPlayerHouse];
+            ushort cost = BuyHouse[houseToBeBougth];
             DialogResult dr = MessageBox.Show(string.Format("Player {0} buy house {1}?\nCost = {2}",
-                playerName, currPlayerHouse, cost),
-                "Buy house", MessageBoxButtons.YesNo);
+                playerName, houseToBeBougth, cost),
+                "Buy house", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
             if (dr == DialogResult.Yes)
             {
+                p[playerIndex].PlayerDeposit -= (short)cost;
                 BankDeposit += cost;
-                p[player].PlayerDeposit -= cost;
-                if (HouseColors[currPlayerHouse] == Color.Blue)
-                    p[player].OwnedBlueHouses++;
-                else if (HouseColors[currPlayerHouse] == Color.Green)
-                    p[player].OwnedGreenHouses++;
-                else if (HouseColors[currPlayerHouse] == Color.Red)
-                    p[player].OwnedRedHouses++;
-                else if (HouseColors[currPlayerHouse] == Color.Yellow)
-                    p[player].OwnedYellowHouses++;
+                HouseOwner[houseToBeBougth] = playerIndex;
+                if (HouseColors[houseToBeBougth] == Color.Blue)
+                    p[playerIndex].OwnedBlueHouses++;
+                else if (HouseColors[houseToBeBougth] == Color.Green)
+                    p[playerIndex].OwnedGreenHouses++;
+                else if (HouseColors[houseToBeBougth] == Color.Red)
+                    p[playerIndex].OwnedRedHouses++;
+                else if (HouseColors[houseToBeBougth] == Color.Yellow)
+                    p[playerIndex].OwnedYellowHouses++;
 
+            }
+        }
+        private void buyOrRent(short playerIndex, string playerName, short houseToBeBougth, string ownerName,
+            short ownerNumber)
+        {
+            ushort cost = BuyHouse[houseToBeBougth];
+            DialogResult dr = MessageBox.Show(string.Format("Player {0} buy house {1} from {2}?\nCost = {3}\n" +
+                "(If you don't buy, you will be charged the rent anyway; rent amount: {4})",
+                playerName, houseToBeBougth, ownerName, cost, RentHouse[houseToBeBougth]),
+                "Buy house", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (dr == DialogResult.Yes)
+            {
+                p[playerIndex].PlayerDeposit -= (short)cost;
+                p[ownerNumber].PlayerDeposit += (short)cost;
+                HouseOwner[houseToBeBougth] = playerIndex;
+                if (HouseColors[houseToBeBougth] == Color.Blue)
+                {
+                    p[playerIndex].OwnedBlueHouses++;
+                    p[ownerNumber].OwnedBlueHouses--;
+                }
+                else if (HouseColors[houseToBeBougth] == Color.Green)
+                {
+                    p[playerIndex].OwnedGreenHouses++;
+                    p[ownerNumber].OwnedGreenHouses--;
+                }
+                else if (HouseColors[houseToBeBougth] == Color.Red)
+                {
+                    p[playerIndex].OwnedRedHouses++;
+                    p[ownerNumber].OwnedRedHouses--;
+                }
+                else if (HouseColors[houseToBeBougth] == Color.Yellow)
+                {
+                    p[playerIndex].OwnedYellowHouses++;
+                    p[ownerNumber].OwnedYellowHouses--;
+                }
+            }
+            else
+            {
+                p[ownerNumber].PlayerDeposit += (short)RentHouse[houseToBeBougth];
             }
         }
         private void showBankDeposit(uint bank)
         {
             labelBank.Text = bank.ToString();
         }
-
         // print the game result for user
         private void writeResultOfPlayers(string[] names)
         {
             int[] points = new int[NumberOfPlayers];
 
             for (short i = 0; i < NumberOfPlayers; i++)
-            {
-                playerDepositLock[i].WaitOne();
                 points[i] = p[i].PlayerDeposit;
-                playerDepositLock[i].Release();
-            }
             labelPlayers.Text = string.Format(
                 "{0}: {1}\n" +
                 "{2}: {3}\n",
@@ -299,7 +348,6 @@ namespace rich_uncle
                         names[3], points[3]);
             }
         }
-
         // colorize the 40 houses
         private void paintHouses()
         {
@@ -432,13 +480,11 @@ namespace rich_uncle
                 }
             }
         }
-
         private void colorizeDiceRoller(Color back, short numberOfDice)
         {
             labelDice.BackColor = back;
             labelDice.Text = numberOfDice.ToString();
         }
-
         private short rollTheDice(Color back)
         {
             Random generateRandom = new Random(DateTime.Now.Second);
@@ -452,5 +498,6 @@ namespace rich_uncle
             }
             return result;
         }
+
     }
 }

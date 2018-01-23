@@ -16,16 +16,18 @@ namespace rich_uncle
         private short posX, posY;
         private short widthX, widthY;
         private Graphics g;
-        private Brush moveColor, formColor;
+        private Brush moveBrush, formColor;
         private short currentHouse;
-
         FormMain mainForm; // to get the house location
         private short numberOfMovements;
         private short threadNumber;
+        
         // ==================================== class public property =======================================
-        public short OwnedRedHouses, OwnedBlueHouses,
-            OwnedYellowHouses, OwnedGreenHouses;
-
+        public short
+            OwnedBlueHouses,
+            OwnedGreenHouses,
+            OwnedRedHouses,
+            OwnedYellowHouses;
         public short NumberOfMovements// after rolling the dice
         {
             get
@@ -41,7 +43,7 @@ namespace rich_uncle
             }
         }
         public Color MoveColor { set; get; }
-        public int PlayerDeposit { get; set; }
+        public short PlayerDeposit { get; set; }
         public short CurrentHouse
         {
             get
@@ -50,9 +52,7 @@ namespace rich_uncle
             }
             set
             {
-                playerCurrHouseLock[threadNumber].WaitOne();
                 currentHouse = value;
-                playerCurrHouseLock[threadNumber].Release();
             }
         }
 
@@ -60,11 +60,12 @@ namespace rich_uncle
         public Player(FormMain mainForm, Color moveColor, short threadNumber,
             short widthX = 10, short widthY = 10)
         {
+            PlayerDeposit = PlayersInitialValue;
             this.threadNumber = threadNumber;
             this.mainForm = mainForm;
             g = mainForm.CreateGraphics();
             MoveColor = moveColor;
-            this.moveColor = new SolidBrush(moveColor);
+            this.moveBrush = new SolidBrush(moveColor);
             formColor = new SolidBrush(mainForm.BackColor);
             this.widthX = widthX;
             this.widthY = widthY;
@@ -73,6 +74,7 @@ namespace rich_uncle
             // not owning any house yet
             OwnedBlueHouses = OwnedGreenHouses = OwnedRedHouses = OwnedYellowHouses = 0;
         }
+
         public void initialPoisitioning()
         {
             initPosLock.WaitOne();
@@ -80,18 +82,12 @@ namespace rich_uncle
             initPosLock.Release();
             posX = (short)curr.X;
             posY = (short)curr.Y;
-            g.FillEllipse(moveColor, posX, posY, widthX, widthY);
+            g.FillEllipse(moveBrush, posX, posY, widthX, widthY);
         }
+
         public void startPlaying()
         {
             initialPoisitioning(); // get ready to play!
-
-            // get the lock first, to avoid race condition
-            playerDepositLock[threadNumber].WaitOne();
-            PlayerDeposit = PlayersInitialValue;
-            playerDepositLock[threadNumber].Release();
-
-
             while (true)
             {
                 Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
@@ -99,9 +95,10 @@ namespace rich_uncle
                 if (CurrentHouse == 0) // before the game starts
                 {
                     CurrentHouse = numberOfMovements; // now we are at a new position
+                    
 
 
-                    dest = mainForm.getHouseLocation(NumberOfMovements); // CHANGE number 2
+                    dest = mainForm.getHouseLocation(CurrentHouse);
 
 
                     move((short)(posX + 11), posY, direction.RIGHT);
@@ -109,7 +106,7 @@ namespace rich_uncle
                     move(posX, 445, direction.UP);
                     move((short)(dest.X + 25), posY, direction.RIGHT);
                     move(posX, (short)(dest.Y - 10), direction.DOWN);
-                    
+
 
 
                     //if (posY > 340)
@@ -136,24 +133,59 @@ namespace rich_uncle
                 }
                 else if (CurrentHouse + NumberOfMovements > 40) // another round of play
                 {
-                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + CurrentHouse) %
-                        NumberOfHouses));
+                    CurrentHouse += numberOfMovements; // now we are at a new position
+                    CurrentHouse %= 40;
+
+                    dest = mainForm.getHouseLocation(CurrentHouse);
+
+                    move(posX, 5, direction.UP);
+                    move(560, posY, direction.RIGHT);
+                    move(posX, 445, direction.DOWN);
+                    move((short)(dest.X + 25), posY, direction.LEFT);
+                    move(posX, (short)(dest.Y - 10), direction.DOWN);
                 }
                 else // still on the same round
                 {
-                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + CurrentHouse)));
+                    CurrentHouse += numberOfMovements; // now we are at a new position
+
+                    dest = mainForm.getHouseLocation(CurrentHouse);
+
+                    if (dest.Y < posY)
+                    {
+                        short toGoLeft = (short)(posX - 15), toGoRight = (short)(560 - posX);
+                        if (toGoLeft > toGoRight)
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(560, posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 25), direction.UP);
+                            move((short)(dest.X + 25), posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                        else
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(15, posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 25), direction.UP);
+                            move((short)(dest.X + 25), posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                    }
+                    else
+                    {
+                        move(posX, (short)(posY - 20), direction.UP);
+                        move((short)(dest.X + 25), posY, direction.LEFT);
+                        move((short)(dest.X + 25), posY, direction.RIGHT);
+                        move(posX, (short)(dest.Y - 10), direction.DOWN);
+                    }
                 }
             }
         }
-
-
+        
         // =================================== class private functions ======================================
         // helper function for the class itself, not going to be used outside
         private void move(short destinationX, short destinationY, direction playerDirection)
         { // I am proud of this function
 
-            g.FillEllipse(new SolidBrush(Color.BlueViolet), posX, posY, widthX, widthY);
-            Thread.Sleep(300);
             switch (playerDirection) // rotate clockwise from top
             {
                 case direction.UP: // up
@@ -165,7 +197,7 @@ namespace rich_uncle
                         posY -= 2;
 
                         // repaint in the next place
-                        g.FillEllipse(moveColor, posX, posY, widthX, widthY);
+                        g.FillEllipse(moveBrush, posX, posY, widthX, widthY);
 
                         // sleep, for the human eye to see the movement and NOT the jumping
                         Thread.Sleep(8); // in milliseconds
@@ -180,7 +212,7 @@ namespace rich_uncle
                         posX += 2;
 
                         // repaint in the next place
-                        g.FillEllipse(moveColor, posX, posY, widthX, widthY);
+                        g.FillEllipse(moveBrush, posX, posY, widthX, widthY);
 
                         // sleep, for the human eye to see the movement and NOT the jumping
                         Thread.Sleep(8); // in milliseconds
@@ -195,7 +227,7 @@ namespace rich_uncle
                         posY += 2;
 
                         // repaint in the next place
-                        g.FillEllipse(moveColor, posX, posY, widthX, widthY);
+                        g.FillEllipse(moveBrush, posX, posY, widthX, widthY);
 
                         // sleep, for the human eye to see the movement and NOT the jumping
                         Thread.Sleep(8); // in milliseconds
@@ -210,7 +242,7 @@ namespace rich_uncle
                         posX -= 2;
 
                         // repaint in the next place
-                        g.FillEllipse(moveColor, posX, posY, widthX, widthY);
+                        g.FillEllipse(moveBrush, posX, posY, widthX, widthY);
 
                         // sleep, for the human eye to see the movement and NOT the jumping
                         Thread.Sleep(8); // in milliseconds
@@ -221,5 +253,6 @@ namespace rich_uncle
                     break;
             }
         }
+
     }
 }

@@ -17,19 +17,16 @@ namespace rich_uncle
         private static ushort lowerBoundOfRentingHouses = 10,
             upperBoundOfRentingHouses = 150;
         // DON'T change this one please
-        private static ushort numberOfHouses = 40;
-
+        private static ushort numberOfHouses = 41;
         private static Color[] houseColors;
         private static ushort[] buyHouse;
         private static ushort[] rentHouse;
-
         private static short initX = 7, initY = 415;
-
 
         // ==================================== class public property =======================================
         public static int NumberOfPlayers { get; set; }
-        public static uint BankDeposit { get; set; }
-        public static int PlayersInitialValue { get; set; }
+        public static ushort BankDeposit { get; set; }
+        public static short PlayersInitialValue { get; set; }
         public static ushort NumberOfHouses
         {
             get
@@ -60,15 +57,14 @@ namespace rich_uncle
         }
         public static short[] HouseOwner { get; set; }
 
-
         // ================================== class public functions ========================================
         public GlobalVariables(FormMain form)
         {
-            buyHouse = new ushort[NumberOfHouses];
-            rentHouse = new ushort[NumberOfHouses];
+            buyHouse = new ushort[NumberOfHouses + 1];
+            rentHouse = new ushort[NumberOfHouses + 1];
             houseColors = new Color[NumberOfHouses + 1]; // ignore 0, go through 1-40
             Random rnd = new Random(DateTime.Now.Second);
-            for (int i = 0; i < NumberOfHouses; i++)
+            for (int i = 1; i <= NumberOfHouses; i++)
             {
                 buyHouse[i] = (ushort)rnd.Next(lowerBoundOfBuyingHouses, upperBoundOfBuyingHouses + 1);
                 rentHouse[i] = (ushort)rnd.Next(lowerBoundOfRentingHouses, upperBoundOfRentingHouses + 1);
@@ -121,15 +117,9 @@ namespace rich_uncle
             }
             //paintHouses(form);
 
-            HouseOwner = new short[NumberOfHouses];
-
-            playerDepositLock = new Semaphore[NumberOfPlayers];
-            for (short i = 0; i < NumberOfPlayers; i++)
-                playerDepositLock[i] = new Semaphore(1, 1);
-            playerCurrHouseLock = new Semaphore[NumberOfPlayers];
-            for (short i = 0; i < NumberOfPlayers; i++)
-                playerCurrHouseLock[i] = new Semaphore(1, 1);
-
+            HouseOwner = new short[NumberOfHouses + 1];
+            for (short i = 1; i <= NumberOfHouses; i++)
+                HouseOwner[i] = -1;
 
         }
         public static Point InitialPoisition
@@ -146,8 +136,6 @@ namespace rich_uncle
         // ====================================== public semaphore ==========================================
         // only one player can move at the same time
         public static Semaphore initPosLock = new Semaphore(1, 1);
-        public static Semaphore[] playerDepositLock;
-        public static Semaphore[] playerCurrHouseLock;
 
     }
 }
