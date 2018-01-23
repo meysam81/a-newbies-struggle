@@ -9,13 +9,17 @@ namespace rich_uncle
 {
     class GlobalVariables
     {
-        // change if you feel like it
+        // change if you feel like it, be careful to know what you are doing
         private static ushort lowerBoundOfBuyingHouses = 100,
             upperBoundOfBuyingHouses = 1200;
-        // again, change if you like
+        // again, change if you like, BE CAREFUL though!
         private static ushort lowerBoundOfRentingHouses = 10,
             upperBoundOfRentingHouses = 150;
 
+
+        public static int NumberOfPlayers { get; set; }
+        public static int BankDeposit { get; set; }
+        public static int PlayersInitialValue { get; set; }
 
         // DON'T change this one please
         private static ushort numberOfHouses = 40;
@@ -106,6 +110,8 @@ namespace rich_uncle
                 return new Point(initX, initY);
             }
         }
+
+
         // only one player can move at the same time
         public static Semaphore initPosLock = new Semaphore(1, 1);
         public static short rollTheDice()
