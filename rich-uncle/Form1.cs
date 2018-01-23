@@ -164,6 +164,7 @@ namespace rich_uncle
             return true;
         }
 
+        // main function of this class leis here as it rolls the dice and give turn to players
         private void chooseTurn()
         {
             string[] playersName = { "Blue: ", "Green: ", "Red: ", "Yellow: " };
@@ -176,9 +177,9 @@ namespace rich_uncle
                 writeResultOfPlayers(playersName, playersPoints);
                 try
                 {
-                    t[2].Resume();
+                    rollTheDice(p[0].MoveColor);
                 }
-                catch (Exception ex) { } // just in case, if something goes wrong
+                catch (Exception) { } // just in case, if something goes wrong
             } while (continuePlaying);
         }
 
@@ -333,6 +334,21 @@ namespace rich_uncle
                         break;
                 }
             }
+        }
+
+
+        private short rollTheDice(Color back)
+        {
+            Random generateRandom = new Random(DateTime.Now.Second);
+            short result = 0;
+            labelDice.BackColor = back;
+            for (int i = 0; i < 100; i++)
+            {
+                result = (short)generateRandom.Next(1, 7);
+                labelDice.Text = result.ToString();
+                Thread.Sleep(3);
+            }
+            return result;
         }
     }
 }
