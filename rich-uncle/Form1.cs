@@ -155,6 +155,8 @@ namespace rich_uncle
 
 
             buttonStart.Enabled = false;
+            buttonStart.Visible = false;
+
         }
 
         // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
@@ -189,37 +191,51 @@ namespace rich_uncle
 
             int[] turns = { -1, -1, -1, -1 };
 
+
+            // first dice roll
+            writeResultOfPlayers(playersName, playersPoints);
+            showBankDeposit(BankDeposit);
+
+            short countTurns = 1;
+            try
+            {
+                short maxDice = 0, firstToMove = -1; // to determine the first player
+                for (short i = 0; i < NumberOfPlayers; i++)
+                {
+                    short tmp = rollTheDice(p[i].MoveColor);
+                    if (tmp > maxDice)
+                    {
+                        maxDice = tmp;
+                        firstToMove = i;
+                    }
+                    p[i].NumberOfMovements = tmp; // everyone's turn is determined here
+                    Thread.Sleep(1000);
+                }
+                turns[0] = firstToMove;
+                colorizeDiceRoller(p[firstToMove].MoveColor, maxDice);
+                t[firstToMove].Resume();
+                for (int i = 0; i < NumberOfPlayers; i++)
+                    if (i != firstToMove)
+                        turns[countTurns++] = i;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            } // just in case, if something goes wrong
+
+
+
+            countTurns = 1;
             bool continuePlaying = false; // just for test
-            bool firstTime = true;
             do
             {
                 writeResultOfPlayers(playersName, playersPoints);
                 showBankDeposit(BankDeposit);
+
                 try
                 {
-                    if (firstTime)
-                    {
-                        short maxDice = 0, firstToMove = -1; // to determine the first player
-                        for (short i = 0; i < NumberOfPlayers; i++)
-                        {
-                            short tmp = rollTheDice(p[i].MoveColor);
-                            if (tmp > maxDice)
-                            {
-                                maxDice = tmp;
-                                firstToMove = i;
-                            }
-                            Thread.Sleep(1000);
-                        }
-                        turns[0] = firstToMove;
-                        colorizeDiceRoller(p[firstToMove].MoveColor, maxDice);
-                        p[firstToMove].NumberOfMovements = maxDice;
-                        t[firstToMove].Resume();
-                        short countTurns = 1;
-                        for (int i = 0; i < NumberOfPlayers; i++)
-                            if (i != firstToMove)
-                                turns[countTurns++] = i;
-                        firstTime = false;
-                    }
+
                 }
                 catch (Exception ex)
                 {
