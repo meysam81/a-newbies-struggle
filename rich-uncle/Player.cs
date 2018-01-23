@@ -18,13 +18,14 @@ namespace rich_uncle
         private Graphics g;
         private Brush moveColor, formColor;
         private short currentHouse;
-        private short ownedRedHouses, ownedBlueHouses,
-            ownedYellowHouses, ownedGreenHouses;
 
         FormMain mainForm; // to get the house location
         private short numberOfMovements;
         private short threadNumber;
         // ==================================== class public property =======================================
+        public short OwnedRedHouses, OwnedBlueHouses,
+            OwnedYellowHouses, OwnedGreenHouses;
+
         public short NumberOfMovements// after rolling the dice
         {
             get
@@ -40,7 +41,20 @@ namespace rich_uncle
             }
         }
         public Color MoveColor { set; get; }
-        public int playerDeposit { get; set; }
+        public int PlayerDeposit { get; set; }
+        public short CurrentHouse
+        {
+            get
+            {
+                return currentHouse;
+            }
+            set
+            {
+                playerCurrHouseLock[threadNumber].WaitOne();
+                currentHouse = value;
+                playerCurrHouseLock[threadNumber].Release();
+            }
+        }
 
         // =================================== class public functions =======================================
         public Player(FormMain mainForm, Color moveColor, short threadNumber,
@@ -54,10 +68,10 @@ namespace rich_uncle
             formColor = new SolidBrush(mainForm.BackColor);
             this.widthX = widthX;
             this.widthY = widthY;
-            currentHouse = 0; // not playing just yet
+            CurrentHouse = 0; // not playing just yet
 
             // not owning any house yet
-            ownedBlueHouses = ownedGreenHouses = ownedRedHouses = ownedYellowHouses = 0;
+            OwnedBlueHouses = OwnedGreenHouses = OwnedRedHouses = OwnedYellowHouses = 0;
         }
         public void initialPoisitioning()
         {
@@ -74,7 +88,7 @@ namespace rich_uncle
 
             // get the lock first, to avoid race condition
             playerDepositLock[threadNumber].WaitOne();
-            playerDeposit = PlayersInitialValue;
+            PlayerDeposit = PlayersInitialValue;
             playerDepositLock[threadNumber].Release();
 
 
@@ -82,11 +96,13 @@ namespace rich_uncle
             {
                 Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
                 Point dest;
-                if (currentHouse == 0) // before the game starts
+                if (CurrentHouse == 0) // before the game starts
                 {
+                    CurrentHouse = numberOfMovements; // now we are at a new position
+
+
                     dest = mainForm.getHouseLocation(NumberOfMovements); // CHANGE number 2
 
-                    currentHouse = numberOfMovements; // now we are at a new position
 
                     move((short)(posX + 11), posY, direction.RIGHT);
                     move(posX, 445, direction.DOWN);
@@ -94,6 +110,8 @@ namespace rich_uncle
                     move((short)(dest.X + 25), posY, direction.RIGHT);
                     move(posX, (short)(dest.Y - 10), direction.DOWN);
                     
+
+
                     //if (posY > 340)
                     //    move(posX, 335, direction.UP);
                     //if (posX > 15)
@@ -116,14 +134,14 @@ namespace rich_uncle
                     //    move(15, posY, direction.LEFT);
 
                 }
-                else if (currentHouse + NumberOfMovements > 40) // another round of play
+                else if (CurrentHouse + NumberOfMovements > 40) // another round of play
                 {
-                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse) %
+                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + CurrentHouse) %
                         NumberOfHouses));
                 }
                 else // still on the same round
                 {
-                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + currentHouse)));
+                    dest = mainForm.getHouseLocation((short)((NumberOfMovements + CurrentHouse)));
                 }
             }
         }
