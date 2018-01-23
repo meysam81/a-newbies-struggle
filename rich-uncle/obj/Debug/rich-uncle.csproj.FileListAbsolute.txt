@@ -8,3 +8,4 @@ C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.csproj.CoreCompileInputs.cache
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.exe
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.pdb
+C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich_uncle.getInfo.resources
