@@ -9,20 +9,27 @@ namespace rich_uncle
 {
     class GlobalVariables
     {
+        // ================================== class private fields ==========================================
         // change if you feel like it, be careful to know what you are doing
         private static ushort lowerBoundOfBuyingHouses = 100,
             upperBoundOfBuyingHouses = 1200;
         // again, change if you like, BE CAREFUL though!
         private static ushort lowerBoundOfRentingHouses = 10,
             upperBoundOfRentingHouses = 150;
+        // DON'T change this one please
+        private static ushort numberOfHouses = 40;
 
+        private static Color[] houseColors;
+        private static short[] buyHouse;
+        private static short[] rentHouse;
 
+        private static short initX = 7, initY = 415;
+        
+        
+        // ==================================== class public property =======================================
         public static int NumberOfPlayers { get; set; }
         public static int BankDeposit { get; set; }
         public static int PlayersInitialValue { get; set; }
-
-        // DON'T change this one please
-        private static ushort numberOfHouses = 40;
         public static ushort NumberOfHouses
         {
             get
@@ -31,12 +38,8 @@ namespace rich_uncle
             }
         }
 
-        private static Color[] houseColors;
 
-        private static short[] buyHouse;
-
-        private static short[] rentHouse;
-
+        // ================================== class public functions ========================================
         public GlobalVariables(FormMain form, out Color[] houseColours)
         {
             buyHouse = new short[NumberOfHouses];
@@ -98,8 +101,6 @@ namespace rich_uncle
             houseColours // form array
                 = houseColors; // glv array
         }
-
-        private static short initX = 7, initY = 415;
         public static Point InitialPoisition
         {
             get
@@ -111,7 +112,7 @@ namespace rich_uncle
             }
         }
 
-
+        // ====================================== public semaphore ==========================================
         // only one player can move at the same time
         public static Semaphore initPosLock = new Semaphore(1, 1);
         

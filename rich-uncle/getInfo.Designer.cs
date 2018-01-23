@@ -89,7 +89,7 @@
             this.numOfPlayers.Size = new System.Drawing.Size(120, 20);
             this.numOfPlayers.TabIndex = 0;
             this.numOfPlayers.Value = new decimal(new int[] {
-            2,
+            4,
             0,
             0,
             0});
@@ -116,12 +116,12 @@
             // 
             this.bankDeposit.Location = new System.Drawing.Point(139, 45);
             this.bankDeposit.Maximum = new decimal(new int[] {
-            4,
+            30000,
             0,
             0,
             0});
             this.bankDeposit.Minimum = new decimal(new int[] {
-            2,
+            10000,
             0,
             0,
             0});
@@ -129,7 +129,7 @@
             this.bankDeposit.Size = new System.Drawing.Size(120, 20);
             this.bankDeposit.TabIndex = 1;
             this.bankDeposit.Value = new decimal(new int[] {
-            2,
+            15000,
             0,
             0,
             0});
@@ -138,12 +138,12 @@
             // 
             this.playerInitDeposit.Location = new System.Drawing.Point(139, 79);
             this.playerInitDeposit.Maximum = new decimal(new int[] {
-            4,
+            20000,
             0,
             0,
             0});
             this.playerInitDeposit.Minimum = new decimal(new int[] {
-            2,
+            4000,
             0,
             0,
             0});
@@ -151,7 +151,7 @@
             this.playerInitDeposit.Size = new System.Drawing.Size(120, 20);
             this.playerInitDeposit.TabIndex = 2;
             this.playerInitDeposit.Value = new decimal(new int[] {
-            2,
+            5000,
             0,
             0,
             0});

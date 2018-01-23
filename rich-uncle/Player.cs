@@ -11,6 +11,7 @@ namespace rich_uncle
 {
     class Player
     {
+        // ================================== class private fields ==========================================
         private enum direction { UP, RIGHT, DOWN, LEFT };
         private short posX, posY;
         private short widthX, widthY;
@@ -19,21 +20,28 @@ namespace rich_uncle
         private short currentHouse;
         private short ownedRedHouses, ownedBlueHouses,
             ownedYellowHouses, ownedGreenHouses;
+
         FormMain mainForm; // to get the house location
+        private short numberOfMovements;
+
+        // ==================================== class public property =======================================
         public short NumberOfMovements// after rolling the dice
         {
             get
             {
-                return NumberOfMovements;
+                return numberOfMovements;
             }
             set
             {
                 if (value >= 1 && value <= 6)
-                    NumberOfMovements = value;
+                    numberOfMovements = value;
                 else
                     throw new Exception("Dice must be between 1-6 inclusively");
             }
         }
+        public Color MoveColor { set; get; }
+
+        // =================================== class public functions =======================================
         public Player(FormMain mainForm, Color moveColor,
             short widthX = 10, short widthY = 10)
         {
@@ -108,8 +116,9 @@ namespace rich_uncle
                 }
             }
         }
-        public Color MoveColor { set; get; }
 
+
+        // =================================== class private functions ======================================
         // helper function for the class itself, not going to be used outside
         private void move(short destinationX, short destinationY, direction playerDirection)
         { // I am proud of this function

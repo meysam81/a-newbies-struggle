@@ -12,6 +12,14 @@ namespace rich_uncle
 {
     public partial class FormMain : Form
     {
+        // ==================================== class private fields ========================================
+        // for every player in the game
+        Thread[] t;
+        Player[] p;
+
+
+
+        // ================================== class public functions ========================================
         public FormMain()
         {
             InitializeComponent();
@@ -105,11 +113,11 @@ namespace rich_uncle
                     return new Point(0, 0);
             }
         }
+        public bool GotInfo { get; set; }
 
-        // for every player in the game
-        Thread[] t;
-        Player[] p;
-
+        
+        
+        // ================================== class private functions =======================================
         private void buttonExit_Click(object sender, EventArgs e)
         {
             Environment.Exit(Environment.ExitCode);
@@ -119,7 +127,7 @@ namespace rich_uncle
         {
             if (!init())
                 return;
-            
+
 
             Color[] houseColours; // going to be initialized in glv constructor, with the 'out' keyword
             GlobalVariables glv = new GlobalVariables(this, out houseColours);
@@ -139,7 +147,7 @@ namespace rich_uncle
                 t[i] = new Thread(new ThreadStart(p[i].startPlaying));
                 t[i].Name = (i + 1).ToString();
             }
-            for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++) 
+            for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++)
                 t[i].Start(); // players start playing
 
             Thread turnThrd = new Thread(new ThreadStart(chooseTurn));
@@ -147,9 +155,7 @@ namespace rich_uncle
             buttonStart.Enabled = false;
         }
 
-        
         // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
-        public bool GotInfo { get; set; }
         private bool init() // get config's from user
         {
             getInfo gf = new getInfo(this);
@@ -172,6 +178,8 @@ namespace rich_uncle
             int[] playersPoints = new int[GlobalVariables.NumberOfPlayers];
 
 
+            int[] turns = { -1, -1, -1, -1 };
+
             bool continuePlaying = false; // just for test
             bool firstTime = true;
             do
@@ -192,11 +200,22 @@ namespace rich_uncle
                             }
                             Thread.Sleep(1000);
                         }
+                        turns[0] = firstToMove;
                         colorizeDiceRoller(p[firstToMove].MoveColor, maxDice);
+                        p[firstToMove].NumberOfMovements = maxDice;
                         t[firstToMove].Resume();
+                        short countTurns = 1;
+                        for (int i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+                            if (i != firstToMove)
+                                turns[countTurns++] = i;
+                        firstTime = false;
                     }
                 }
-                catch (Exception) { } // just in case, if something goes wrong
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                } // just in case, if something goes wrong
             } while (continuePlaying);
         }
 
@@ -353,7 +372,6 @@ namespace rich_uncle
             }
         }
 
-
         private void colorizeDiceRoller(Color back, short numberOfDice)
         {
             labelDice.BackColor = back;
@@ -364,7 +382,7 @@ namespace rich_uncle
         {
             Random generateRandom = new Random(DateTime.Now.Second);
             short result = 0;
-            
+
             for (int i = 0; i < 20; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
