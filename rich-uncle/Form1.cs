@@ -129,10 +129,9 @@ namespace rich_uncle
                 return;
 
 
-            Color[] houseColours; // going to be initialized in glv constructor, with the 'out' keyword
-            GlobalVariables glv = new GlobalVariables(this, out houseColours);
+            GlobalVariables glv = new GlobalVariables(this);
 
-            paintHouses(houseColours); // rondom colorization of 40 houses
+            paintHouses(); // rondom colorization of 40 houses
 
             p = new Player[NumberOfPlayers];
             t = new Thread[NumberOfPlayers];
@@ -179,21 +178,14 @@ namespace rich_uncle
         private void chooseTurn()
         {
             string[] playersName = { "Blue", "Green", "Red", "Yellow" };
-            int[] playersPoints = new int[NumberOfPlayers];
-
-            for (short i = 0; i < NumberOfPlayers; i++)
-            {
-                playerDepositLock[i].WaitOne();
-                playersPoints[i] = p[i].playerDeposit;
-                playerDepositLock[i].Release();
-            }
+            
 
 
-            int[] turns = { -1, -1, -1, -1 };
+            short[] turns = { -1, -1, -1, -1 };
 
 
             // first dice roll
-            writeResultOfPlayers(playersName, playersPoints);
+            writeResultOfPlayers(playersName);
             showBankDeposit(BankDeposit);
 
             short countTurns = 1;
@@ -214,7 +206,7 @@ namespace rich_uncle
                 turns[0] = firstToMove;
                 colorizeDiceRoller(p[firstToMove].MoveColor, maxDice);
                 t[firstToMove].Resume();
-                for (int i = 0; i < NumberOfPlayers; i++)
+                for (short i = 0; i < NumberOfPlayers; i++)
                     if (i != firstToMove)
                         turns[countTurns++] = i;
             }
@@ -226,11 +218,18 @@ namespace rich_uncle
 
 
 
+
+            buyCurrentHouse(turns[0], playersName[turns[0]],
+                (short)(p[turns[0]].CurrentHouse + p[turns[0]].NumberOfMovements)); // should we buy?
+
+
+
+
             countTurns = 1;
             bool continuePlaying = false; // just for test
             do
             {
-                writeResultOfPlayers(playersName, playersPoints);
+                writeResultOfPlayers(playersName);
                 showBankDeposit(BankDeposit);
 
                 try
@@ -245,14 +244,45 @@ namespace rich_uncle
             } while (continuePlaying);
         }
 
+
+        private void buyCurrentHouse(short player, string playerName, short currPlayerHouse)
+        {
+            ushort cost = BuyHouse[currPlayerHouse];
+            DialogResult dr = MessageBox.Show(string.Format("Player {0} buy house {1}?\nCost = {2}",
+                playerName, currPlayerHouse, cost),
+                "Buy house", MessageBoxButtons.YesNo);
+
+            if (dr == DialogResult.Yes)
+            {
+                BankDeposit += cost;
+                p[player].PlayerDeposit -= cost;
+                if (HouseColors[currPlayerHouse] == Color.Blue)
+                    p[player].OwnedBlueHouses++;
+                else if (HouseColors[currPlayerHouse] == Color.Green)
+                    p[player].OwnedGreenHouses++;
+                else if (HouseColors[currPlayerHouse] == Color.Red)
+                    p[player].OwnedRedHouses++;
+                else if (HouseColors[currPlayerHouse] == Color.Yellow)
+                    p[player].OwnedYellowHouses++;
+
+            }
+        }
         private void showBankDeposit(uint bank)
         {
             labelBank.Text = bank.ToString();
         }
 
         // print the game result for user
-        private void writeResultOfPlayers(string[] names, int[] points)
+        private void writeResultOfPlayers(string[] names)
         {
+            int[] points = new int[NumberOfPlayers];
+
+            for (short i = 0; i < NumberOfPlayers; i++)
+            {
+                playerDepositLock[i].WaitOne();
+                points[i] = p[i].PlayerDeposit;
+                playerDepositLock[i].Release();
+            }
             labelPlayers.Text = string.Format(
                 "{0}: {1}\n" +
                 "{2}: {3}\n",
@@ -271,131 +301,131 @@ namespace rich_uncle
         }
 
         // colorize the 40 houses
-        private void paintHouses(Color[] houseColors)
+        private void paintHouses()
         {
             for (int number = 1; number <= NumberOfHouses; number++)
             {
                 switch (number)
                 {
                     case 1:
-                        label1.BackColor = houseColors[number];
+                        label1.BackColor = HouseColors[number];
                         break;
                     case 2:
-                        label2.BackColor = houseColors[number];
+                        label2.BackColor = HouseColors[number];
                         break;
                     case 3:
-                        label3.BackColor = houseColors[number];
+                        label3.BackColor = HouseColors[number];
                         break;
                     case 4:
-                        label4.BackColor = houseColors[number];
+                        label4.BackColor = HouseColors[number];
                         break;
                     case 5:
-                        label5.BackColor = houseColors[number];
+                        label5.BackColor = HouseColors[number];
                         break;
                     case 6:
-                        label6.BackColor = houseColors[number];
+                        label6.BackColor = HouseColors[number];
                         break;
                     case 7:
-                        label7.BackColor = houseColors[number];
+                        label7.BackColor = HouseColors[number];
                         break;
                     case 8:
-                        label8.BackColor = houseColors[number];
+                        label8.BackColor = HouseColors[number];
                         break;
                     case 9:
-                        label9.BackColor = houseColors[number];
+                        label9.BackColor = HouseColors[number];
                         break;
                     case 10:
-                        label10.BackColor = houseColors[number];
+                        label10.BackColor = HouseColors[number];
                         break;
                     case 11:
-                        label11.BackColor = houseColors[number];
+                        label11.BackColor = HouseColors[number];
                         break;
                     case 12:
-                        label12.BackColor = houseColors[number];
+                        label12.BackColor = HouseColors[number];
                         break;
                     case 13:
-                        label13.BackColor = houseColors[number];
+                        label13.BackColor = HouseColors[number];
                         break;
                     case 14:
-                        label14.BackColor = houseColors[number];
+                        label14.BackColor = HouseColors[number];
                         break;
                     case 15:
-                        label15.BackColor = houseColors[number];
+                        label15.BackColor = HouseColors[number];
                         break;
                     case 16:
-                        label16.BackColor = houseColors[number];
+                        label16.BackColor = HouseColors[number];
                         break;
                     case 17:
-                        label17.BackColor = houseColors[number];
+                        label17.BackColor = HouseColors[number];
                         break;
                     case 18:
-                        label18.BackColor = houseColors[number];
+                        label18.BackColor = HouseColors[number];
                         break;
                     case 19:
-                        label19.BackColor = houseColors[number];
+                        label19.BackColor = HouseColors[number];
                         break;
                     case 20:
-                        label20.BackColor = houseColors[number];
+                        label20.BackColor = HouseColors[number];
                         break;
                     case 21:
-                        label21.BackColor = houseColors[number];
+                        label21.BackColor = HouseColors[number];
                         break;
                     case 22:
-                        label22.BackColor = houseColors[number];
+                        label22.BackColor = HouseColors[number];
                         break;
                     case 23:
-                        label23.BackColor = houseColors[number];
+                        label23.BackColor = HouseColors[number];
                         break;
                     case 24:
-                        label24.BackColor = houseColors[number];
+                        label24.BackColor = HouseColors[number];
                         break;
                     case 25:
-                        label25.BackColor = houseColors[number];
+                        label25.BackColor = HouseColors[number];
                         break;
                     case 26:
-                        label26.BackColor = houseColors[number];
+                        label26.BackColor = HouseColors[number];
                         break;
                     case 27:
-                        label27.BackColor = houseColors[number];
+                        label27.BackColor = HouseColors[number];
                         break;
                     case 28:
-                        label28.BackColor = houseColors[number];
+                        label28.BackColor = HouseColors[number];
                         break;
                     case 29:
-                        label29.BackColor = houseColors[number];
+                        label29.BackColor = HouseColors[number];
                         break;
                     case 30:
-                        label30.BackColor = houseColors[number];
+                        label30.BackColor = HouseColors[number];
                         break;
                     case 31:
-                        label31.BackColor = houseColors[number];
+                        label31.BackColor = HouseColors[number];
                         break;
                     case 32:
-                        label32.BackColor = houseColors[number];
+                        label32.BackColor = HouseColors[number];
                         break;
                     case 33:
-                        label33.BackColor = houseColors[number];
+                        label33.BackColor = HouseColors[number];
                         break;
                     case 34:
-                        label34.BackColor = houseColors[number];
+                        label34.BackColor = HouseColors[number];
                         break;
                     case 35:
-                        label35.BackColor = houseColors[number];
+                        label35.BackColor = HouseColors[number];
                         break;
                     case 36:
-                        label36.BackColor = houseColors[number];
+                        label36.BackColor = HouseColors[number];
                         break;
                     case 37:
-                        label37.BackColor = houseColors[number];
+                        label37.BackColor = HouseColors[number];
                         break;
                     case 38:
-                        label38.BackColor = houseColors[number];
+                        label38.BackColor = HouseColors[number];
                         break;
                     case 39:
-                        label39.BackColor = houseColors[number];
+                        label39.BackColor = HouseColors[number];
                         break;
                     case 40:
-                        label40.BackColor = houseColors[number];
+                        label40.BackColor = HouseColors[number];
                         break;
                     default:
                         break;
