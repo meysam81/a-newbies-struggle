@@ -172,12 +172,28 @@ namespace rich_uncle
 
 
             bool continuePlaying = false; // just for test
+            bool firstTime = true;
             do
             {
                 writeResultOfPlayers(playersName, playersPoints);
                 try
                 {
-                    rollTheDice(p[0].MoveColor);
+                    if (firstTime)
+                    {
+                        short maxDice = 0, firstToMove = -1; // to determine the first player
+                        for (short i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+                        {
+                            short tmp = rollTheDice(p[i].MoveColor);
+                            if (tmp > maxDice)
+                            {
+                                maxDice = tmp;
+                                firstToMove = i;
+                            }
+                            Thread.Sleep(1000);
+                        }
+                        colorizeDiceRoller(p[firstToMove].MoveColor, maxDice);
+                        t[firstToMove].Resume();
+                    }
                 }
                 catch (Exception) { } // just in case, if something goes wrong
             } while (continuePlaying);
@@ -337,16 +353,22 @@ namespace rich_uncle
         }
 
 
+        private void colorizeDiceRoller(Color back, short numberOfDice)
+        {
+            labelDice.BackColor = back;
+            labelDice.Text = numberOfDice.ToString();
+        }
+
         private short rollTheDice(Color back)
         {
             Random generateRandom = new Random(DateTime.Now.Second);
             short result = 0;
-            labelDice.BackColor = back;
+            
             for (int i = 0; i < 100; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
-                labelDice.Text = result.ToString();
-                Thread.Sleep(3);
+                colorizeDiceRoller(back, result);
+                Thread.Sleep(4);
             }
             return result;
         }
