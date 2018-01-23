@@ -115,8 +115,8 @@ namespace rich_uncle
         }
         public bool GotInfo { get; set; }
 
-        
-        
+
+
         // ================================== class private functions =======================================
         private void buttonExit_Click(object sender, EventArgs e)
         {
@@ -152,6 +152,8 @@ namespace rich_uncle
 
             Thread turnThrd = new Thread(new ThreadStart(chooseTurn));
             turnThrd.Start(); // start rolling dices
+
+
             buttonStart.Enabled = false;
         }
 
@@ -174,8 +176,11 @@ namespace rich_uncle
         // main function of this class leis here as it rolls the dice and give turn to players
         private void chooseTurn()
         {
-            string[] playersName = { "Blue: ", "Green: ", "Red: ", "Yellow: " };
+            string[] playersName = { "Blue", "Green", "Red", "Yellow" };
             int[] playersPoints = new int[GlobalVariables.NumberOfPlayers];
+
+            for (short i = 0; i < GlobalVariables.NumberOfPlayers; i++)
+                playersPoints[i] = p[i].playerDeposit;
 
 
             int[] turns = { -1, -1, -1, -1 };
@@ -185,6 +190,7 @@ namespace rich_uncle
             do
             {
                 writeResultOfPlayers(playersName, playersPoints);
+                showBankDeposit(GlobalVariables.BankDeposit);
                 try
                 {
                     if (firstTime)
@@ -217,6 +223,11 @@ namespace rich_uncle
                     return;
                 } // just in case, if something goes wrong
             } while (continuePlaying);
+        }
+
+        private void showBankDeposit(uint bank)
+        {
+            labelBank.Text = bank.ToString();
         }
 
         // print the game result for user
