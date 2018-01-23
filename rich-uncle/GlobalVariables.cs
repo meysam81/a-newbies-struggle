@@ -20,12 +20,12 @@ namespace rich_uncle
         private static ushort numberOfHouses = 40;
 
         private static Color[] houseColors;
-        private static short[] buyHouse;
-        private static short[] rentHouse;
+        private static ushort[] buyHouse;
+        private static ushort[] rentHouse;
 
         private static short initX = 7, initY = 415;
-        
-        
+
+
         // ==================================== class public property =======================================
         public static int NumberOfPlayers { get; set; }
         public static uint BankDeposit { get; set; }
@@ -37,19 +37,41 @@ namespace rich_uncle
                 return numberOfHouses;
             }
         }
+        public static Color[] HouseColors
+        {
+            get
+            {
+                return houseColors;
+            }
+        }
+        public static ushort[] BuyHouse
+        {
+            get
+            {
+                return buyHouse;
+            }
+        }
+        public static ushort[] RentHouse
+        {
+            get
+            {
+                return rentHouse;
+            }
+        }
+        public static short[] HouseOwner { get; set; }
 
 
         // ================================== class public functions ========================================
-        public GlobalVariables(FormMain form, out Color[] houseColours)
+        public GlobalVariables(FormMain form)
         {
-            buyHouse = new short[NumberOfHouses];
-            rentHouse = new short[NumberOfHouses];
+            buyHouse = new ushort[NumberOfHouses];
+            rentHouse = new ushort[NumberOfHouses];
             houseColors = new Color[NumberOfHouses + 1]; // ignore 0, go through 1-40
             Random rnd = new Random(DateTime.Now.Second);
             for (int i = 0; i < NumberOfHouses; i++)
             {
-                buyHouse[i] = (short)rnd.Next(lowerBoundOfBuyingHouses, upperBoundOfBuyingHouses + 1);
-                rentHouse[i] = (short)rnd.Next(lowerBoundOfRentingHouses, upperBoundOfRentingHouses + 1);
+                buyHouse[i] = (ushort)rnd.Next(lowerBoundOfBuyingHouses, upperBoundOfBuyingHouses + 1);
+                rentHouse[i] = (ushort)rnd.Next(lowerBoundOfRentingHouses, upperBoundOfRentingHouses + 1);
             }
 
 
@@ -98,12 +120,17 @@ namespace rich_uncle
                 }
             }
             //paintHouses(form);
-            houseColours // form array
-                = houseColors; // glv array
+
+            HouseOwner = new short[NumberOfHouses];
 
             playerDepositLock = new Semaphore[NumberOfPlayers];
             for (short i = 0; i < NumberOfPlayers; i++)
                 playerDepositLock[i] = new Semaphore(1, 1);
+            playerCurrHouseLock = new Semaphore[NumberOfPlayers];
+            for (short i = 0; i < NumberOfPlayers; i++)
+                playerCurrHouseLock[i] = new Semaphore(1, 1);
+
+
         }
         public static Point InitialPoisition
         {
@@ -120,6 +147,7 @@ namespace rich_uncle
         // only one player can move at the same time
         public static Semaphore initPosLock = new Semaphore(1, 1);
         public static Semaphore[] playerDepositLock;
+        public static Semaphore[] playerCurrHouseLock;
 
     }
 }
