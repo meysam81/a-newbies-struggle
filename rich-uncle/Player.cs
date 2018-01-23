@@ -73,7 +73,7 @@ namespace rich_uncle
             initialPoisitioning(); // get ready to play!
 
             // get the lock first, to avoid race condition
-            playerDepositLock[threadNumber].WaitOne(); 
+            playerDepositLock[threadNumber].WaitOne();
             playerDeposit = PlayersInitialValue;
             playerDepositLock[threadNumber].Release();
 
@@ -85,13 +85,15 @@ namespace rich_uncle
                 if (currentHouse == 0) // before the game starts
                 {
                     dest = mainForm.getHouseLocation(NumberOfMovements); // CHANGE number 2
+
+                    currentHouse = numberOfMovements; // now we are at a new position
+
                     move((short)(posX + 11), posY, direction.RIGHT);
-                    if (posY < 445)
-                        move(posX, 445, direction.DOWN);
-                    else
-                        move(posX, 445, direction.UP);
-                    //if (posX < 560)
-                    //    move(560, posY, direction.RIGHT);
+                    move(posX, 445, direction.DOWN);
+                    move(posX, 445, direction.UP);
+                    move((short)(dest.X + 25), posY, direction.RIGHT);
+                    move(posX, (short)(dest.Y - 10), direction.DOWN);
+                    
                     //if (posY > 340)
                     //    move(posX, 335, direction.UP);
                     //if (posX > 15)
