@@ -188,17 +188,18 @@ namespace rich_uncle
             try // first roll of the dice
             {
                 short maxDice = 0, firstToMove = -1; // to determine the first player
+                short currentDice = 0;
                 for (short i = 0; i < NumberOfPlayers; i++)
                 {
 
 
-                    short tmp = rollTheDice(p[i].MoveColor);
-                    if (tmp > maxDice)
+                    currentDice = rollTheDice(p[i].MoveColor);
+                    if (currentDice > maxDice)
                     {
-                        maxDice = tmp;
+                        maxDice = currentDice;
                         firstToMove = i;
                     }
-                    p[i].NumberOfMovements = tmp; // everyone's turn is determined here
+                    p[i].NumberOfMovements = currentDice; // everyone's turn is determined here
                 }
 
                 turns[countTurns++] = firstToMove;
@@ -216,7 +217,10 @@ namespace rich_uncle
 
                 buyCurrentHouse(turns[0], playersName[turns[0]],
                     nextPosition); // should we buy?
-                countTurns = 1;
+                if (currentDice == 6)
+                    countTurns = 0;
+                else
+                    countTurns = 1;
 
             }
             catch (Exception ex)
@@ -242,7 +246,10 @@ namespace rich_uncle
 
                     short currentTurn = turns[countTurns];
 
-                    p[currentTurn].NumberOfMovements = rollTheDice(p[currentTurn].MoveColor);
+                    short currentDice = rollTheDice(p[currentTurn].MoveColor);
+                    if (currentDice == 6)
+                        countTurns--; // a player with dice 6, gets a reward
+                    p[currentTurn].NumberOfMovements = currentDice;
 
                     colorizeDiceRoller(p[currentTurn].MoveColor, p[currentTurn].NumberOfMovements);
                     nextPosition = (short)((p[currentTurn].CurrentHouse +
@@ -273,7 +280,7 @@ namespace rich_uncle
 
             changeGroupBuyButtons(true, Color.Goldenrod, Color.LightGray);
 
-            labelShow5.Text = string.Format("Player {0} buy house {1} for {2}?", 
+            labelShow5.Text = string.Format("Player {0} buy house {1} for {2}?",
                 playerName, houseToBeBougth, BuyHouse[houseToBeBougth]);
 
             waitDecideBuyLock.WaitOne();
@@ -606,7 +613,7 @@ namespace rich_uncle
                 {
                     case 1:
                         label1.Text =
-                            string.Format("Furniture\n") + 
+                            string.Format("Furniture\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
