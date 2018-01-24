@@ -132,6 +132,7 @@ namespace rich_uncle
             GlobalVariables glv = new GlobalVariables(this);
 
             paintHouses(); // rondom colorization of 40 houses
+            showPrices();
 
             p = new Player[NumberOfPlayers];
             t = new Thread[NumberOfPlayers];
@@ -189,7 +190,7 @@ namespace rich_uncle
                 short maxDice = 0, firstToMove = -1; // to determine the first player
                 for (short i = 0; i < NumberOfPlayers; i++)
                 {
-                    
+
 
                     short tmp = rollTheDice(p[i].MoveColor);
                     if (tmp > maxDice)
@@ -237,14 +238,14 @@ namespace rich_uncle
 
                 try
                 {
-                    
+
 
                     short currentTurn = turns[countTurns];
 
                     p[currentTurn].NumberOfMovements = rollTheDice(p[currentTurn].MoveColor);
 
                     colorizeDiceRoller(p[currentTurn].MoveColor, p[currentTurn].NumberOfMovements);
-                    nextPosition = (short)((p[currentTurn].CurrentHouse + 
+                    nextPosition = (short)((p[currentTurn].CurrentHouse +
                         p[currentTurn].NumberOfMovements) % NumberOfHouses);
 
                     t[currentTurn].Resume(); // let the player move for it's turn
@@ -471,7 +472,7 @@ namespace rich_uncle
             }
         }
         private void colorizeDiceRoller(Color back, short numberOfDice)
-        { 
+        {
             /* now I am proud ofthis function and all functionalizing 
              * in my program cause it made my life a lot easier */
             labelShow2.BackColor = back;
@@ -534,7 +535,7 @@ namespace rich_uncle
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace, ex.Message, 
+                MessageBox.Show(ex.StackTrace, ex.Message,
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -551,7 +552,214 @@ namespace rich_uncle
         }
         private void showPrices()
         {
-            
+            for (int number = 1; number <= NumberOfHouses; number++)
+            {
+                switch (number)
+                {
+                    case 1:
+                        label1.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 2:
+                        label2.Text =
+                        string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 3:
+                        label3.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 4:
+                        label4.Text =
+                        string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 5:
+                        label5.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 6:
+                        label6.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 7:
+                        label7.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 8:
+                        label8.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 9:
+                        label9.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 10:
+                        label10.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 11:
+                        label11.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 12:
+                        label12.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 13:
+                        label13.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 14:
+                        label14.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 15:
+                        label15.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 16:
+                        label16.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 17:
+                        label17.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 18:
+                        label18.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 19:
+                        label19.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 20:
+                        label20.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 21:
+                        label21.Text = 
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 22:
+                        label22.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 23:
+                        label23.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 24:
+                        label24.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 25:
+                        label25.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 26:
+                        label26.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 27:
+                        label27.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 28:
+                        label28.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 29:
+                        label29.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 30:
+                        label30.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 31:
+                        label31.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 32:
+                        label32.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 33:
+                        label33.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 34:
+                        label34.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 35:
+                        label35.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 36:
+                        label36.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 37:
+                        label37.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 38:
+                        label38.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 39:
+                        label39.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    case 40:
+                        label40.Text =
+                            string.Format("Buy: {0}\nRent: {1}",
+                            BuyHouse[number], RentHouse[number]);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
     }
 }
