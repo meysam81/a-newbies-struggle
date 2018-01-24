@@ -23,7 +23,7 @@ namespace rich_uncle
         private short threadNumber;
         
         // ==================================== class public property =======================================
-        public short
+        public ushort
             OwnedBlueHouses,
             OwnedGreenHouses,
             OwnedRedHouses,

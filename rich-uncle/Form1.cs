@@ -278,10 +278,10 @@ namespace rich_uncle
 
             ushort cost = BuyHouse[houseToBeBougth];
 
-            changeGroupBuyButtons(true, Color.Goldenrod, Color.LightGray);
+            changeGroupBuyButtons(true, Color.Goldenrod, Color.LightGray,
+                string.Format("Player {0} buy house {1} for {2}?",
+                playerName, houseToBeBougth, BuyHouse[houseToBeBougth]));
 
-            labelShow5.Text = string.Format("Player {0} buy house {1} for {2}?",
-                playerName, houseToBeBougth, BuyHouse[houseToBeBougth]);
 
             waitDecideBuyLock.WaitOne();
             if (buy)
@@ -293,21 +293,24 @@ namespace rich_uncle
 
                 HouseOwner[houseToBeBougth] = playerIndex;
 
-                if (HouseColors[houseToBeBougth] == Color.Blue)
-                    p[playerIndex].OwnedBlueHouses++;
+                if (HouseColors[houseToBeBougth] == Color.DodgerBlue)
+                    p[playerIndex].OwnedBlueHouses += RentHouse[houseToBeBougth];
+
                 else if (HouseColors[houseToBeBougth] == Color.Green)
-                    p[playerIndex].OwnedGreenHouses++;
+                    p[playerIndex].OwnedGreenHouses += RentHouse[houseToBeBougth];
+
                 else if (HouseColors[houseToBeBougth] == Color.Red)
-                    p[playerIndex].OwnedRedHouses++;
+                    p[playerIndex].OwnedRedHouses += RentHouse[houseToBeBougth];
+
                 else if (HouseColors[houseToBeBougth] == Color.Yellow)
-                    p[playerIndex].OwnedYellowHouses++;
+                    p[playerIndex].OwnedYellowHouses += RentHouse[houseToBeBougth];
 
 
             }
+            
 
-            labelShow5.Text = string.Format("Buy?");
-
-            changeGroupBuyButtons(false, BackColor, BackColor);
+            changeGroupBuyButtons(false, BackColor,
+                BackColor, string.Format("Buy?"));
         }
         private void showHouseOwner(short player, short house)
         {
@@ -330,7 +333,7 @@ namespace rich_uncle
             }
 
         }
-        private void changeGroupBuyButtons(bool enable, Color buttonColor, Color groupBoxColor)
+        private void changeGroupBuyButtons(bool enable, Color buttonColor, Color groupBoxColor, string message)
         {
             groupBoxBuy.BackColor = groupBoxColor;
 
@@ -339,13 +342,26 @@ namespace rich_uncle
 
             buttonYesBuy.BackColor = buttonColor;
             buttonNoBuy.BackColor = buttonColor;
+
+            labelShow5.Text = message;
         }
         private void rentHouse(short playerIndex, string playerName,
             short houseToBeBougth, string ownerName, short ownerNumber)
         {
-            ushort cost = BuyHouse[houseToBeBougth];
+            ushort cost = 0;
+
+            if (HouseColors[houseToBeBougth] == Color.DodgerBlue)
+                cost = p[ownerNumber].OwnedBlueHouses;
+            else if (HouseColors[houseToBeBougth] == Color.Green)
+                cost = p[ownerNumber].OwnedGreenHouses;
+            else if (HouseColors[houseToBeBougth] == Color.Red)
+                cost = p[ownerNumber].OwnedRedHouses;
+            else if (HouseColors[houseToBeBougth] == Color.Yellow)
+                cost = p[ownerNumber].OwnedYellowHouses;
+
             p[playerIndex].PlayerDeposit -= (short)cost;
             p[ownerNumber].PlayerDeposit += (short)RentHouse[houseToBeBougth];
+
         }
         private void showBankDeposit(uint bank)
         {
