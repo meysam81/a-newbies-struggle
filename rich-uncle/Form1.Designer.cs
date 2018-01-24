@@ -155,7 +155,7 @@
             // labelShow2
             // 
             this.labelShow2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow2.Location = new System.Drawing.Point(688, 17);
+            this.labelShow2.Location = new System.Drawing.Point(688, 12);
             this.labelShow2.Name = "labelShow2";
             this.labelShow2.Size = new System.Drawing.Size(54, 21);
             this.labelShow2.TabIndex = 2;
@@ -165,7 +165,7 @@
             // labelShow3
             // 
             this.labelShow3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow3.Location = new System.Drawing.Point(628, 93);
+            this.labelShow3.Location = new System.Drawing.Point(628, 88);
             this.labelShow3.Name = "labelShow3";
             this.labelShow3.Size = new System.Drawing.Size(114, 18);
             this.labelShow3.TabIndex = 2;
@@ -656,7 +656,7 @@
             // labelShow1
             // 
             this.labelShow1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow1.Location = new System.Drawing.Point(628, 21);
+            this.labelShow1.Location = new System.Drawing.Point(628, 16);
             this.labelShow1.Name = "labelShow1";
             this.labelShow1.Size = new System.Drawing.Size(54, 17);
             this.labelShow1.TabIndex = 2;
@@ -667,9 +667,9 @@
             // 
             this.labelPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelPlayers.Location = new System.Drawing.Point(631, 111);
+            this.labelPlayers.Location = new System.Drawing.Point(631, 106);
             this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(111, 94);
+            this.labelPlayers.Size = new System.Drawing.Size(111, 75);
             this.labelPlayers.TabIndex = 2;
             this.labelPlayers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -677,7 +677,7 @@
             // 
             this.labelBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelBank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelBank.Location = new System.Drawing.Point(628, 38);
+            this.labelBank.Location = new System.Drawing.Point(628, 33);
             this.labelBank.Name = "labelBank";
             this.labelBank.Size = new System.Drawing.Size(54, 46);
             this.labelBank.TabIndex = 2;
@@ -698,7 +698,7 @@
             // labelShow4
             // 
             this.labelShow4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow4.Location = new System.Drawing.Point(628, 214);
+            this.labelShow4.Location = new System.Drawing.Point(628, 189);
             this.labelShow4.Name = "labelShow4";
             this.labelShow4.Size = new System.Drawing.Size(114, 18);
             this.labelShow4.TabIndex = 2;
@@ -709,9 +709,9 @@
             // 
             this.labelOwners0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelOwners0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelOwners0.Location = new System.Drawing.Point(631, 232);
+            this.labelOwners0.Location = new System.Drawing.Point(631, 207);
             this.labelOwners0.Name = "labelOwners0";
-            this.labelOwners0.Size = new System.Drawing.Size(27, 159);
+            this.labelOwners0.Size = new System.Drawing.Size(27, 184);
             this.labelOwners0.TabIndex = 2;
             this.labelOwners0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -719,9 +719,9 @@
             // 
             this.labelOwners1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelOwners1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelOwners1.Location = new System.Drawing.Point(660, 232);
+            this.labelOwners1.Location = new System.Drawing.Point(660, 207);
             this.labelOwners1.Name = "labelOwners1";
-            this.labelOwners1.Size = new System.Drawing.Size(27, 159);
+            this.labelOwners1.Size = new System.Drawing.Size(27, 184);
             this.labelOwners1.TabIndex = 2;
             this.labelOwners1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -729,9 +729,9 @@
             // 
             this.labelOwners2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelOwners2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelOwners2.Location = new System.Drawing.Point(689, 232);
+            this.labelOwners2.Location = new System.Drawing.Point(689, 207);
             this.labelOwners2.Name = "labelOwners2";
-            this.labelOwners2.Size = new System.Drawing.Size(27, 159);
+            this.labelOwners2.Size = new System.Drawing.Size(27, 184);
             this.labelOwners2.TabIndex = 2;
             this.labelOwners2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -739,9 +739,9 @@
             // 
             this.labelOwners3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelOwners3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelOwners3.Location = new System.Drawing.Point(718, 232);
+            this.labelOwners3.Location = new System.Drawing.Point(718, 207);
             this.labelOwners3.Name = "labelOwners3";
-            this.labelOwners3.Size = new System.Drawing.Size(27, 159);
+            this.labelOwners3.Size = new System.Drawing.Size(27, 184);
             this.labelOwners3.TabIndex = 2;
             this.labelOwners3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -793,7 +793,7 @@
             // pictureBoxDice
             // 
             this.pictureBoxDice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBoxDice.Location = new System.Drawing.Point(688, 38);
+            this.pictureBoxDice.Location = new System.Drawing.Point(688, 33);
             this.pictureBoxDice.Name = "pictureBoxDice";
             this.pictureBoxDice.Size = new System.Drawing.Size(54, 46);
             this.pictureBoxDice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

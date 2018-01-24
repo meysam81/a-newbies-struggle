@@ -17,7 +17,7 @@ namespace rich_uncle
         private static ushort lowerBoundOfRentingHouses = 10,
             upperBoundOfRentingHouses = 150;
         // DON'T change this one please
-        private static ushort numberOfHouses = 41;
+        private static ushort numberOfHouses = 40;
         private static Color[] houseColors;
         private static ushort[] buyHouse;
         private static ushort[] rentHouse;

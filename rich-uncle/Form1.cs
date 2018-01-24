@@ -307,15 +307,74 @@ namespace rich_uncle
                     return;
                 } // just in case, if something goes wrong
 
-                
+
 
                 countTurns++;
             } while (!gameFinished); // condition is for test ONLY
 
 
+            ushort maxPoint = 0;
+            int gameWinner = determineWinner(ref maxPoint);
 
+
+            MessageBox.Show(string.Format("Player {0} won the game with {1} points!"
+                , playersName[maxPoint], gameWinner)
+                , "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+
+            buttonExit_Click(null, null); // exit the program
 
         }
+
+        private int determineWinner(ref ushort maxPoint)
+        {
+            int[] playerPoints = new int[NumberOfPlayers]; // calculate each player's points
+            for (ushort i = 0; i < NumberOfPlayers; i++)
+            {
+                playerPoints[i] = p[i].PlayerDeposit;
+                string tmp = null;
+                switch (i)
+                {
+                    case 0:
+                        tmp = labelOwners0.Text;
+                        break;
+                    case 1:
+                        tmp = labelOwners1.Text;
+                        break;
+                    case 2:
+                        tmp = labelOwners2.Text;
+                        break;
+                    case 3:
+                        tmp = labelOwners3.Text;
+                        break;
+                    default:
+                        break;
+                }
+
+                foreach (var item in tmp.Split('\n'))
+                {
+                    try
+                    {
+                        int tmp1 = Convert.ToInt32(item);
+                        playerPoints[i] += tmp1;
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+
+                }
+            }
+            int maxNum = playerPoints[maxPoint];
+            for (ushort i = 1; i < NumberOfPlayers; i++)
+                if (playerPoints[i] > maxNum)
+                {
+                    maxPoint = i;
+                    maxNum = playerPoints[i];
+                }
+            return maxNum;
+        }
+
         private void buyCurrentHouse(short playerIndex, string playerName, short houseToBeBougth)
         {
 
@@ -410,7 +469,7 @@ namespace rich_uncle
             p[playerIndex].PlayerDeposit -= (short)cost;
             p[ownerNumber].PlayerDeposit += (short)RentHouse[houseToBeBougth];
 
-            Thread.Sleep(5000);
+            //Thread.Sleep(3000);
 
 
             changeGroupBuyButtons(false, BackColor,
