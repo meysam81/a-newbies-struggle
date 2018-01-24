@@ -749,9 +749,9 @@
             // 
             this.buttonNoBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.buttonNoBuy.Enabled = false;
-            this.buttonNoBuy.Location = new System.Drawing.Point(81, 42);
+            this.buttonNoBuy.Location = new System.Drawing.Point(86, 70);
             this.buttonNoBuy.Name = "buttonNoBuy";
-            this.buttonNoBuy.Size = new System.Drawing.Size(54, 25);
+            this.buttonNoBuy.Size = new System.Drawing.Size(78, 25);
             this.buttonNoBuy.TabIndex = 1;
             this.buttonNoBuy.Text = "No";
             this.buttonNoBuy.UseVisualStyleBackColor = false;
@@ -761,9 +761,9 @@
             // 
             this.buttonYesBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.buttonYesBuy.Enabled = false;
-            this.buttonYesBuy.Location = new System.Drawing.Point(23, 42);
+            this.buttonYesBuy.Location = new System.Drawing.Point(6, 70);
             this.buttonYesBuy.Name = "buttonYesBuy";
-            this.buttonYesBuy.Size = new System.Drawing.Size(54, 25);
+            this.buttonYesBuy.Size = new System.Drawing.Size(74, 25);
             this.buttonYesBuy.TabIndex = 0;
             this.buttonYesBuy.Text = "Yes";
             this.buttonYesBuy.UseVisualStyleBackColor = false;
@@ -772,9 +772,9 @@
             // labelShow5
             // 
             this.labelShow5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow5.Location = new System.Drawing.Point(21, 21);
+            this.labelShow5.Location = new System.Drawing.Point(6, 16);
             this.labelShow5.Name = "labelShow5";
-            this.labelShow5.Size = new System.Drawing.Size(114, 18);
+            this.labelShow5.Size = new System.Drawing.Size(158, 51);
             this.labelShow5.TabIndex = 2;
             this.labelShow5.Text = "Buy?";
             this.labelShow5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -784,9 +784,9 @@
             this.groupBoxBuy.Controls.Add(this.labelShow5);
             this.groupBoxBuy.Controls.Add(this.buttonYesBuy);
             this.groupBoxBuy.Controls.Add(this.buttonNoBuy);
-            this.groupBoxBuy.Location = new System.Drawing.Point(603, 379);
+            this.groupBoxBuy.Location = new System.Drawing.Point(578, 360);
             this.groupBoxBuy.Name = "groupBoxBuy";
-            this.groupBoxBuy.Size = new System.Drawing.Size(148, 82);
+            this.groupBoxBuy.Size = new System.Drawing.Size(173, 101);
             this.groupBoxBuy.TabIndex = 3;
             this.groupBoxBuy.TabStop = false;
             // 

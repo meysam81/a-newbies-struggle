@@ -273,6 +273,9 @@ namespace rich_uncle
 
             changeGroupBuyButtons(true, Color.Goldenrod, Color.LightGray);
 
+            labelShow5.Text = string.Format("Player {0} buy house {1} for {2}?", 
+                playerName, houseToBeBougth, BuyHouse[houseToBeBougth]);
+
             waitDecideBuyLock.WaitOne();
             if (buy)
             {
@@ -294,6 +297,8 @@ namespace rich_uncle
 
 
             }
+
+            labelShow5.Text = string.Format("Buy?");
 
             changeGroupBuyButtons(false, BackColor, BackColor);
         }
