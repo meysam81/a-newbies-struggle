@@ -325,7 +325,6 @@ namespace rich_uncle
             buttonExit_Click(null, null); // exit the program
 
         }
-
         private int determineWinner(ref ushort maxPoint)
         {
             int[] playerPoints = new int[NumberOfPlayers]; // calculate each player's points
@@ -374,7 +373,6 @@ namespace rich_uncle
                 }
             return maxNum;
         }
-
         private void buyCurrentHouse(short playerIndex, string playerName, short houseToBeBougth)
         {
 
