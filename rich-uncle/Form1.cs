@@ -132,7 +132,7 @@ namespace rich_uncle
             GlobalVariables glv = new GlobalVariables(this);
 
             paintHouses(); // rondom colorization of 40 houses
-            showPrices();
+            showNamesAndPrices();
 
             p = new Player[NumberOfPlayers];
             t = new Thread[NumberOfPlayers];
@@ -333,7 +333,8 @@ namespace rich_uncle
             }
 
         }
-        private void changeGroupBuyButtons(bool enable, Color buttonColor, Color groupBoxColor, string message)
+        private void changeGroupBuyButtons(bool enable, Color buttonColor, 
+            Color groupBoxColor, string message)
         {
             groupBoxBuy.BackColor = groupBoxColor;
 
@@ -621,7 +622,7 @@ namespace rich_uncle
             buy = false;
             waitDecideBuyLock.Release();
         }
-        private void showPrices()
+        private void showNamesAndPrices()
         {
             for (int number = 1; number <= NumberOfHouses; number++)
             {
@@ -675,7 +676,7 @@ namespace rich_uncle
                         break;
                     case 9:
                         label9.Text =
-                            string.Format("Empty Land!\n");
+                            string.Format("Move back 4 houses!\n");
                         break;
                     case 10:
                         label10.Text =
@@ -735,7 +736,7 @@ namespace rich_uncle
                         break;
                     case 20:
                         label20.Text =
-                            string.Format("Empty Land!\n");
+                            string.Format("Move forward 5 houses!\n");
                         break;
                     case 21:
                         label21.Text =
@@ -841,7 +842,7 @@ namespace rich_uncle
                         break;
                     case 39:
                         label39.Text =
-                            string.Format("Empty Land!\n");
+                            string.Format("Move back 3 houses!\n");
                         break;
                     case 40:
                         label40.Text =
