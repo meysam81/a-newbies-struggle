@@ -251,7 +251,7 @@ namespace rich_uncle
 
                     if (HouseOwner[nextPosition] == -1) // the house is not bought
                         buyCurrentHouse(currentTurn, playersName[currentTurn], nextPosition);
-                    else // it is bought
+                    else if (currentTurn != HouseOwner[nextPosition]) // it is bought, not by itself definitely
                         rentHouse(currentTurn, playersName[currentTurn], nextPosition,
                             playersName[HouseOwner[nextPosition]], HouseOwner[nextPosition]);
                 }
@@ -270,7 +270,7 @@ namespace rich_uncle
 
             ushort cost = BuyHouse[houseToBeBougth];
 
-            changeGroupBuy(true, Color.Goldenrod, Color.LightGray);
+            changeGroupBuyButtons(true, Color.Goldenrod, Color.LightGray);
 
             waitDecideBuyLock.WaitOne();
             if (buy)
@@ -292,9 +292,9 @@ namespace rich_uncle
 
             }
 
-            changeGroupBuy(false, BackColor, BackColor);
+            changeGroupBuyButtons(false, BackColor, BackColor);
         }
-        private void changeGroupBuy(bool enable, Color buttonColor, Color groupBoxColor)
+        private void changeGroupBuyButtons(bool enable, Color buttonColor, Color groupBoxColor)
         {
             groupBoxBuy.BackColor = groupBoxColor;
 
@@ -548,6 +548,10 @@ namespace rich_uncle
         {
             buy = false;
             waitDecideBuyLock.Release();
+        }
+        private void showPrices()
+        {
+            
         }
     }
 }
