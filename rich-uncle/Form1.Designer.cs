@@ -792,6 +792,7 @@
             // 
             // pictureBoxDice
             // 
+            this.pictureBoxDice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBoxDice.Location = new System.Drawing.Point(688, 38);
             this.pictureBoxDice.Name = "pictureBoxDice";
             this.pictureBoxDice.Size = new System.Drawing.Size(54, 46);

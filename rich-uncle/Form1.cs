@@ -279,6 +279,8 @@ namespace rich_uncle
                 p[playerIndex].PlayerDeposit -= (short)cost;
                 BankDeposit += cost;
 
+                showHouseOwner(playerIndex, houseToBeBougth);
+
                 HouseOwner[houseToBeBougth] = playerIndex;
 
                 if (HouseColors[houseToBeBougth] == Color.Blue)
@@ -294,6 +296,27 @@ namespace rich_uncle
             }
 
             changeGroupBuyButtons(false, BackColor, BackColor);
+        }
+        private void showHouseOwner(short player, short house)
+        {
+            switch (player)
+            {
+                case 0:
+                    labelOwners0.Text += house.ToString() + "\n";
+                    break;
+                case 1:
+                    labelOwners1.Text += house.ToString() + "\n";
+                    break;
+                case 2:
+                    labelOwners2.Text += house.ToString() + "\n";
+                    break;
+                case 3:
+                    labelOwners3.Text += house.ToString() + "\n";
+                    break;
+                default:
+                    break;
+            }
+
         }
         private void changeGroupBuyButtons(bool enable, Color buttonColor, Color groupBoxColor)
         {
@@ -321,6 +344,26 @@ namespace rich_uncle
         {
             int[] points = new int[NumberOfPlayers];
 
+            for (short i = 0; i < NumberOfPlayers; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        labelOwners0.BackColor = Color.Blue;
+                        break;
+                    case 1:
+                        labelOwners1.BackColor = Color.Green;
+                        break;
+                    case 2:
+                        labelOwners2.BackColor = Color.Red;
+                        break;
+                    case 3:
+                        labelOwners3.BackColor = Color.Yellow;
+                        break;
+                    default:
+                        break;
+                }
+            }
             for (short i = 0; i < NumberOfPlayers; i++)
                 points[i] = p[i].PlayerDeposit;
             labelPlayers.Text = string.Format(
@@ -657,7 +700,7 @@ namespace rich_uncle
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 21:
-                        label21.Text = 
+                        label21.Text =
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
