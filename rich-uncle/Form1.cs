@@ -255,10 +255,27 @@ namespace rich_uncle
                     p[currentTurn].NumberOfMovements = currentDice;
 
                     colorizeDiceRoller(p[currentTurn].MoveColor, p[currentTurn].NumberOfMovements);
-                    nextPosition = (short)((p[currentTurn].CurrentHouse +
-                        p[currentTurn].NumberOfMovements) % NumberOfHouses);
+
+
+                    nextPosition = (short)(p[currentTurn].CurrentHouse +
+                        p[currentTurn].NumberOfMovements);
+
+                    if (nextPosition > 40) // player finished a round
+                    {
+                        nextPosition %= 40;
+
+                        changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                            string.Format("Player {0} passed one round and got {1} from bank!",
+                            playersName[currentTurn], FinishRoundBonus));
+
+
+                        p[currentTurn].PlayerDeposit += (short)FinishRoundBonus;
+                        BankDeposit -= FinishRoundBonus;
+                    }
+
 
                     t[currentTurn].Resume(); // let the player move for it's turn
+                    // wait for the player to finish moving, then roll the dice again
                     Thread.CurrentThread.Suspend();
 
 
@@ -276,6 +293,8 @@ namespace rich_uncle
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 } // just in case, if something goes wrong
+
+                
 
                 countTurns++;
             } while (true); // condition is for test ONLY
@@ -314,10 +333,10 @@ namespace rich_uncle
 
 
             }
-            
 
             changeGroupBuyButtons(false, BackColor,
                 BackColor, string.Format("Buy?"));
+
         }
         private void showHouseOwner(short player, short house)
         {
@@ -340,7 +359,7 @@ namespace rich_uncle
             }
 
         }
-        private void changeGroupBuyButtons(bool enable, Color buttonColor, 
+        private void changeGroupBuyButtons(bool enable, Color buttonColor,
             Color groupBoxColor, string message)
         {
             groupBoxBuy.BackColor = groupBoxColor;
@@ -356,6 +375,10 @@ namespace rich_uncle
         private void rentHouse(short playerIndex, string playerName,
             short houseToBeBougth, string ownerName, short ownerNumber)
         {
+            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                            string.Format("Player {0} rented house {1} from {2} for {3}",
+                            playerName, houseToBeBougth, ownerName, RentHouse[houseToBeBougth]));
+
             ushort cost = 0;
 
             if (HouseColors[houseToBeBougth] == Color.DodgerBlue)
@@ -369,6 +392,12 @@ namespace rich_uncle
 
             p[playerIndex].PlayerDeposit -= (short)cost;
             p[ownerNumber].PlayerDeposit += (short)RentHouse[houseToBeBougth];
+
+            Thread.Sleep(5000);
+
+
+            changeGroupBuyButtons(false, BackColor,
+                BackColor, string.Format("Buy?"));
 
         }
         private void showBankDeposit(uint bank)

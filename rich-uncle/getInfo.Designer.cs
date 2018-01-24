@@ -36,9 +36,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.bankDeposit = new System.Windows.Forms.NumericUpDown();
             this.playerInitDeposit = new System.Windows.Forms.NumericUpDown();
+            this.label4 = new System.Windows.Forms.Label();
+            this.finishRoundBonus = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.numOfPlayers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankDeposit)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerInitDeposit)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.finishRoundBonus)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +56,8 @@
             // buttonExit
             // 
             this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonExit.Location = new System.Drawing.Point(207, 135);
+            this.buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonExit.Location = new System.Drawing.Point(207, 155);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(75, 23);
             this.buttonExit.TabIndex = 4;
@@ -64,7 +68,7 @@
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Location = new System.Drawing.Point(126, 135);
+            this.buttonSave.Location = new System.Drawing.Point(126, 155);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
             this.buttonSave.TabIndex = 3;
@@ -156,6 +160,37 @@
             0,
             0});
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(21, 114);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(102, 13);
+            this.label4.TabIndex = 0;
+            this.label4.Text = "Finish Round Bonus";
+            // 
+            // finishRoundBonus
+            // 
+            this.finishRoundBonus.Location = new System.Drawing.Point(139, 112);
+            this.finishRoundBonus.Maximum = new decimal(new int[] {
+            2000,
+            0,
+            0,
+            0});
+            this.finishRoundBonus.Minimum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.finishRoundBonus.Name = "finishRoundBonus";
+            this.finishRoundBonus.Size = new System.Drawing.Size(120, 20);
+            this.finishRoundBonus.TabIndex = 2;
+            this.finishRoundBonus.Value = new decimal(new int[] {
+            800,
+            0,
+            0,
+            0});
+            // 
             // getInfo
             // 
             this.AcceptButton = this.buttonSave;
@@ -163,15 +198,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.CancelButton = this.buttonExit;
-            this.ClientSize = new System.Drawing.Size(284, 161);
+            this.ClientSize = new System.Drawing.Size(284, 181);
+            this.Controls.Add(this.finishRoundBonus);
             this.Controls.Add(this.playerInitDeposit);
             this.Controls.Add(this.bankDeposit);
             this.Controls.Add(this.numOfPlayers);
             this.Controls.Add(this.buttonSave);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
+            this.MaximumSize = new System.Drawing.Size(300, 220);
+            this.MinimumSize = new System.Drawing.Size(300, 220);
             this.Name = "getInfo";
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -179,6 +218,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numOfPlayers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bankDeposit)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.playerInitDeposit)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.finishRoundBonus)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -194,5 +234,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.NumericUpDown bankDeposit;
         private System.Windows.Forms.NumericUpDown playerInitDeposit;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.NumericUpDown finishRoundBonus;
     }
 }

@@ -56,6 +56,7 @@ namespace rich_uncle
             }
         }
         public static short[] HouseOwner { get; set; }
+        public static ushort FinishRoundBonus { get; set; }
 
         // ================================== class public functions ========================================
         public GlobalVariables(FormMain form)

@@ -30,6 +30,7 @@ namespace rich_uncle
             GlobalVariables.NumberOfPlayers = Convert.ToInt32(numOfPlayers.Value);
             GlobalVariables.BankDeposit = (ushort)Convert.ToUInt32(bankDeposit.Value);
             GlobalVariables.PlayersInitialValue = (short)Convert.ToInt32(playerInitDeposit.Value);
+            GlobalVariables.FinishRoundBonus = (ushort)(finishRoundBonus.Value);
             f.GotInfo = true;
             Close();
         }
