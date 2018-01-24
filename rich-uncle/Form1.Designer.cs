@@ -33,8 +33,8 @@
             this.label39 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.labelShow1 = new System.Windows.Forms.Label();
             this.labelShow2 = new System.Windows.Forms.Label();
+            this.labelShow3 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
@@ -72,10 +72,21 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.labelShow3 = new System.Windows.Forms.Label();
+            this.labelShow1 = new System.Windows.Forms.Label();
             this.labelDice = new System.Windows.Forms.Label();
             this.labelPlayers = new System.Windows.Forms.Label();
             this.labelBank = new System.Windows.Forms.Label();
+            this.buttonRollTheDice = new System.Windows.Forms.Button();
+            this.labelShow4 = new System.Windows.Forms.Label();
+            this.labelOwners0 = new System.Windows.Forms.Label();
+            this.labelOwners1 = new System.Windows.Forms.Label();
+            this.labelOwners2 = new System.Windows.Forms.Label();
+            this.labelOwners3 = new System.Windows.Forms.Label();
+            this.buttonNoBuy = new System.Windows.Forms.Button();
+            this.buttonYesBuy = new System.Windows.Forms.Button();
+            this.labelShow5 = new System.Windows.Forms.Label();
+            this.groupBoxBuy = new System.Windows.Forms.GroupBox();
+            this.groupBoxBuy.SuspendLayout();
             this.SuspendLayout();
             // 
             // buttonExit
@@ -83,10 +94,10 @@
             this.buttonExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonExit.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.buttonExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonExit.Location = new System.Drawing.Point(676, 532);
+            this.buttonExit.Location = new System.Drawing.Point(702, 532);
             this.buttonExit.Name = "buttonExit";
-            this.buttonExit.Size = new System.Drawing.Size(75, 23);
-            this.buttonExit.TabIndex = 1;
+            this.buttonExit.Size = new System.Drawing.Size(49, 23);
+            this.buttonExit.TabIndex = 2;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -95,9 +106,9 @@
             // 
             this.buttonStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonStart.BackColor = System.Drawing.Color.Aqua;
-            this.buttonStart.Location = new System.Drawing.Point(595, 532);
+            this.buttonStart.Location = new System.Drawing.Point(646, 532);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(75, 23);
+            this.buttonStart.Size = new System.Drawing.Size(50, 23);
             this.buttonStart.TabIndex = 0;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = false;
@@ -139,25 +150,25 @@
             this.label9.Text = "9";
             this.label9.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelShow1
-            // 
-            this.labelShow1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow1.Location = new System.Drawing.Point(666, 13);
-            this.labelShow1.Name = "labelShow1";
-            this.labelShow1.Size = new System.Drawing.Size(54, 21);
-            this.labelShow1.TabIndex = 2;
-            this.labelShow1.Text = "Dice";
-            this.labelShow1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelShow2
             // 
             this.labelShow2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow2.Location = new System.Drawing.Point(646, 81);
+            this.labelShow2.Location = new System.Drawing.Point(688, 17);
             this.labelShow2.Name = "labelShow2";
-            this.labelShow2.Size = new System.Drawing.Size(96, 18);
+            this.labelShow2.Size = new System.Drawing.Size(54, 21);
             this.labelShow2.TabIndex = 2;
-            this.labelShow2.Text = "Players";
+            this.labelShow2.Text = "Dice";
             this.labelShow2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelShow3
+            // 
+            this.labelShow3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow3.Location = new System.Drawing.Point(628, 108);
+            this.labelShow3.Name = "labelShow3";
+            this.labelShow3.Size = new System.Drawing.Size(114, 18);
+            this.labelShow3.TabIndex = 2;
+            this.labelShow3.Text = "Players";
+            this.labelShow3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
@@ -640,23 +651,23 @@
             this.label1.Text = "1";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // labelShow3
+            // labelShow1
             // 
-            this.labelShow3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelShow3.Location = new System.Drawing.Point(666, 203);
-            this.labelShow3.Name = "labelShow3";
-            this.labelShow3.Size = new System.Drawing.Size(54, 17);
-            this.labelShow3.TabIndex = 2;
-            this.labelShow3.Text = "Bank";
-            this.labelShow3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.labelShow1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow1.Location = new System.Drawing.Point(628, 21);
+            this.labelShow1.Name = "labelShow1";
+            this.labelShow1.Size = new System.Drawing.Size(54, 17);
+            this.labelShow1.TabIndex = 2;
+            this.labelShow1.Text = "Bank";
+            this.labelShow1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // labelDice
             // 
             this.labelDice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelDice.Location = new System.Drawing.Point(666, 34);
+            this.labelDice.Location = new System.Drawing.Point(688, 38);
             this.labelDice.Name = "labelDice";
-            this.labelDice.Size = new System.Drawing.Size(54, 39);
+            this.labelDice.Size = new System.Drawing.Size(54, 46);
             this.labelDice.TabIndex = 2;
             this.labelDice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -664,9 +675,9 @@
             // 
             this.labelPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelPlayers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelPlayers.Location = new System.Drawing.Point(646, 99);
+            this.labelPlayers.Location = new System.Drawing.Point(631, 126);
             this.labelPlayers.Name = "labelPlayers";
-            this.labelPlayers.Size = new System.Drawing.Size(96, 94);
+            this.labelPlayers.Size = new System.Drawing.Size(111, 94);
             this.labelPlayers.TabIndex = 2;
             this.labelPlayers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -674,11 +685,118 @@
             // 
             this.labelBank.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelBank.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelBank.Location = new System.Drawing.Point(666, 220);
+            this.labelBank.Location = new System.Drawing.Point(628, 38);
             this.labelBank.Name = "labelBank";
             this.labelBank.Size = new System.Drawing.Size(54, 46);
             this.labelBank.TabIndex = 2;
             this.labelBank.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonRollTheDice
+            // 
+            this.buttonRollTheDice.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonRollTheDice.Enabled = false;
+            this.buttonRollTheDice.Location = new System.Drawing.Point(646, 501);
+            this.buttonRollTheDice.Name = "buttonRollTheDice";
+            this.buttonRollTheDice.Size = new System.Drawing.Size(105, 25);
+            this.buttonRollTheDice.TabIndex = 1;
+            this.buttonRollTheDice.Text = "Roll The Dice";
+            this.buttonRollTheDice.UseVisualStyleBackColor = false;
+            this.buttonRollTheDice.Click += new System.EventHandler(this.buttonRollTheDice_Click);
+            // 
+            // labelShow4
+            // 
+            this.labelShow4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow4.Location = new System.Drawing.Point(628, 241);
+            this.labelShow4.Name = "labelShow4";
+            this.labelShow4.Size = new System.Drawing.Size(114, 18);
+            this.labelShow4.TabIndex = 2;
+            this.labelShow4.Text = "Owners";
+            this.labelShow4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelOwners0
+            // 
+            this.labelOwners0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelOwners0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelOwners0.Location = new System.Drawing.Point(631, 259);
+            this.labelOwners0.Name = "labelOwners0";
+            this.labelOwners0.Size = new System.Drawing.Size(27, 94);
+            this.labelOwners0.TabIndex = 2;
+            this.labelOwners0.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelOwners1
+            // 
+            this.labelOwners1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelOwners1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelOwners1.Location = new System.Drawing.Point(660, 259);
+            this.labelOwners1.Name = "labelOwners1";
+            this.labelOwners1.Size = new System.Drawing.Size(27, 94);
+            this.labelOwners1.TabIndex = 2;
+            this.labelOwners1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelOwners2
+            // 
+            this.labelOwners2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelOwners2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelOwners2.Location = new System.Drawing.Point(689, 259);
+            this.labelOwners2.Name = "labelOwners2";
+            this.labelOwners2.Size = new System.Drawing.Size(27, 94);
+            this.labelOwners2.TabIndex = 2;
+            this.labelOwners2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // labelOwners3
+            // 
+            this.labelOwners3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelOwners3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.labelOwners3.Location = new System.Drawing.Point(718, 259);
+            this.labelOwners3.Name = "labelOwners3";
+            this.labelOwners3.Size = new System.Drawing.Size(27, 94);
+            this.labelOwners3.TabIndex = 2;
+            this.labelOwners3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // buttonNoBuy
+            // 
+            this.buttonNoBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonNoBuy.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.buttonNoBuy.Location = new System.Drawing.Point(81, 42);
+            this.buttonNoBuy.Name = "buttonNoBuy";
+            this.buttonNoBuy.Size = new System.Drawing.Size(54, 25);
+            this.buttonNoBuy.TabIndex = 1;
+            this.buttonNoBuy.Text = "No";
+            this.buttonNoBuy.UseVisualStyleBackColor = false;
+            this.buttonNoBuy.Click += new System.EventHandler(this.buttonRollTheDice_Click);
+            // 
+            // buttonYesBuy
+            // 
+            this.buttonYesBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.buttonYesBuy.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.buttonYesBuy.Location = new System.Drawing.Point(23, 42);
+            this.buttonYesBuy.Name = "buttonYesBuy";
+            this.buttonYesBuy.Size = new System.Drawing.Size(54, 25);
+            this.buttonYesBuy.TabIndex = 1;
+            this.buttonYesBuy.Text = "Yes";
+            this.buttonYesBuy.UseVisualStyleBackColor = false;
+            this.buttonYesBuy.Click += new System.EventHandler(this.buttonRollTheDice_Click);
+            // 
+            // labelShow5
+            // 
+            this.labelShow5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow5.Location = new System.Drawing.Point(21, 21);
+            this.labelShow5.Name = "labelShow5";
+            this.labelShow5.Size = new System.Drawing.Size(114, 18);
+            this.labelShow5.TabIndex = 2;
+            this.labelShow5.Text = "Buy?";
+            this.labelShow5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // groupBoxBuy
+            // 
+            this.groupBoxBuy.Controls.Add(this.labelShow5);
+            this.groupBoxBuy.Controls.Add(this.buttonYesBuy);
+            this.groupBoxBuy.Controls.Add(this.buttonNoBuy);
+            this.groupBoxBuy.Location = new System.Drawing.Point(603, 379);
+            this.groupBoxBuy.Name = "groupBoxBuy";
+            this.groupBoxBuy.Size = new System.Drawing.Size(148, 82);
+            this.groupBoxBuy.TabIndex = 3;
+            this.groupBoxBuy.TabStop = false;
             // 
             // FormMain
             // 
@@ -688,12 +806,19 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.CancelButton = this.buttonExit;
             this.ClientSize = new System.Drawing.Size(754, 556);
+            this.Controls.Add(this.groupBoxBuy);
+            this.Controls.Add(this.buttonRollTheDice);
+            this.Controls.Add(this.labelOwners3);
+            this.Controls.Add(this.labelOwners2);
+            this.Controls.Add(this.labelOwners1);
+            this.Controls.Add(this.labelOwners0);
+            this.Controls.Add(this.labelShow4);
             this.Controls.Add(this.labelPlayers);
-            this.Controls.Add(this.labelShow2);
-            this.Controls.Add(this.labelBank);
             this.Controls.Add(this.labelShow3);
-            this.Controls.Add(this.labelDice);
+            this.Controls.Add(this.labelBank);
             this.Controls.Add(this.labelShow1);
+            this.Controls.Add(this.labelDice);
+            this.Controls.Add(this.labelShow2);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonExit);
             this.Controls.Add(this.label8);
@@ -742,6 +867,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rich Uncle";
+            this.groupBoxBuy.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -749,9 +875,9 @@
         #endregion
         private System.Windows.Forms.Button buttonExit;
         private System.Windows.Forms.Button buttonStart;
-        private System.Windows.Forms.Label labelShow1;
         private System.Windows.Forms.Label labelShow2;
         private System.Windows.Forms.Label labelShow3;
+        private System.Windows.Forms.Label labelShow1;
         private System.Windows.Forms.Label labelDice;
         private System.Windows.Forms.Label labelPlayers;
         private System.Windows.Forms.Label labelBank;
@@ -795,6 +921,16 @@
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Button buttonRollTheDice;
+        private System.Windows.Forms.Label labelShow4;
+        private System.Windows.Forms.Label labelOwners0;
+        private System.Windows.Forms.Label labelOwners1;
+        private System.Windows.Forms.Label labelOwners2;
+        private System.Windows.Forms.Label labelOwners3;
+        private System.Windows.Forms.Button buttonNoBuy;
+        private System.Windows.Forms.Button buttonYesBuy;
+        private System.Windows.Forms.Label labelShow5;
+        private System.Windows.Forms.GroupBox groupBoxBuy;
     }
 }
 

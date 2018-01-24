@@ -17,6 +17,7 @@ namespace rich_uncle
         // for every player in the game
         Thread[] t;
         Player[] p;
+        Thread turnThrd;
 
         // ================================== class public functions ========================================
         public FormMain()
@@ -145,9 +146,8 @@ namespace rich_uncle
             for (int i = 0; i < NumberOfPlayers; i++)
                 t[i].Start(); // players start playing
 
-            Thread turnThrd = new Thread(new ThreadStart(chooseTurn));
+            turnThrd = new Thread(new ThreadStart(chooseTurn));
             turnThrd.Start(); // start rolling dices
-
 
             buttonStart.Enabled = false;
             buttonStart.Visible = false;
@@ -186,6 +186,9 @@ namespace rich_uncle
                 short maxDice = 0, firstToMove = -1; // to determine the first player
                 for (short i = 0; i < NumberOfPlayers; i++)
                 {
+                    changeButtonDice(true, Color.SaddleBrown);
+                    rollDiceLock.WaitOne();
+
                     short tmp = rollTheDice(p[i].MoveColor);
                     if (tmp > maxDice)
                     {
@@ -234,6 +237,9 @@ namespace rich_uncle
 
                 try
                 {
+                    changeButtonDice(true, Color.SaddleBrown);
+                    rollDiceLock.WaitOne();
+
                     short currentTurn = turns[countTurns];
 
                     p[currentTurn].NumberOfMovements = rollTheDice(p[currentTurn].MoveColor);
@@ -498,6 +504,24 @@ namespace rich_uncle
             }
             return result;
         }
-
+        private void changeButtonDice(bool enable, Color color)
+        {
+            buttonRollTheDice.BackColor = color;
+            buttonRollTheDice.Enabled = enable;
+        }
+        private void buttonRollTheDice_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                //turnThrd.Resume();
+                rollDiceLock.Release();
+                changeButtonDice(false, BackColor);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
     }
 }

@@ -1,7 +1,6 @@
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\bin\Debug\rich-uncle.exe.config
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\bin\Debug\rich-uncle.exe
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\bin\Debug\rich-uncle.pdb
-C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.csprojResolveAssemblyReference.cache
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich_uncle.FormMain.resources
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich_uncle.Properties.Resources.resources
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.csproj.GenerateResource.Cache
@@ -9,3 +8,4 @@ C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.exe
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.pdb
 C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich_uncle.getInfo.resources
+C:\Users\meysam\Documents\Visual Studio 2017\Projects\rich-uncle\rich-uncle\obj\Debug\rich-uncle.csprojResolveAssemblyReference.cache
