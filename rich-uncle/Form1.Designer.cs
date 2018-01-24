@@ -98,6 +98,7 @@
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(49, 23);
             this.buttonExit.TabIndex = 2;
+            this.buttonExit.TabStop = false;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = false;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -756,26 +757,26 @@
             // buttonNoBuy
             // 
             this.buttonNoBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.buttonNoBuy.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.buttonNoBuy.Enabled = false;
             this.buttonNoBuy.Location = new System.Drawing.Point(81, 42);
             this.buttonNoBuy.Name = "buttonNoBuy";
             this.buttonNoBuy.Size = new System.Drawing.Size(54, 25);
             this.buttonNoBuy.TabIndex = 1;
             this.buttonNoBuy.Text = "No";
             this.buttonNoBuy.UseVisualStyleBackColor = false;
-            this.buttonNoBuy.Click += new System.EventHandler(this.buttonRollTheDice_Click);
+            this.buttonNoBuy.Click += new System.EventHandler(this.buttonNoBuy_Click);
             // 
             // buttonYesBuy
             // 
             this.buttonYesBuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
-            this.buttonYesBuy.DialogResult = System.Windows.Forms.DialogResult.Yes;
+            this.buttonYesBuy.Enabled = false;
             this.buttonYesBuy.Location = new System.Drawing.Point(23, 42);
             this.buttonYesBuy.Name = "buttonYesBuy";
             this.buttonYesBuy.Size = new System.Drawing.Size(54, 25);
-            this.buttonYesBuy.TabIndex = 1;
+            this.buttonYesBuy.TabIndex = 0;
             this.buttonYesBuy.Text = "Yes";
             this.buttonYesBuy.UseVisualStyleBackColor = false;
-            this.buttonYesBuy.Click += new System.EventHandler(this.buttonRollTheDice_Click);
+            this.buttonYesBuy.Click += new System.EventHandler(this.buttonYesBuy_Click);
             // 
             // labelShow5
             // 

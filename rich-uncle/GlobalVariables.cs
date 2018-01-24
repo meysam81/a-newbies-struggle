@@ -136,7 +136,8 @@ namespace rich_uncle
         // ====================================== public semaphore ==========================================
         // only one player can move at the same time
         public static Semaphore initPosLock = new Semaphore(1, 1);
-        public static Semaphore rollDiceLock = new Semaphore(1, 1);
+        public static Semaphore rollDiceLock = new Semaphore(0, 1);
+        public static Semaphore waitDecideBuyLock = new Semaphore(0, 1);
 
     }
 }
