@@ -106,28 +106,7 @@ namespace rich_uncle
                     move((short)(dest.X + 25), posY, direction.RIGHT);
                     move(posX, (short)(dest.Y - 10), direction.DOWN);
 
-
-
-                    //if (posY > 340)
-                    //    move(posX, 335, direction.UP);
-                    //if (posX > 15)
-                    //    move(15, posY, direction.LEFT);
-                    //if (posY > 235)
-                    //    move(posX, 225, direction.UP);
-                    //if (posX < 560)
-                    //    move(560, posY, direction.RIGHT);
-                    //if (posY > 115)
-                    //    move(posX, 115, direction.UP);
-                    //if (posX > 15)
-                    //    move(15, posY, direction.LEFT);
-                    //if (posY > 5)
-                    //    move(posX, 5, direction.UP);
-                    //if (posX < 560)
-                    //    move(560, posY, direction.RIGHT);
-                    //if (posY < 445)
-                    //    move(posX, 445, direction.DOWN);
-                    //if (posX > 15)
-                    //    move(15, posY, direction.LEFT);
+                    
 
                 }
                 else if (CurrentHouse + NumberOfMovements > 40) // another round of play
@@ -151,7 +130,7 @@ namespace rich_uncle
 
                     if (dest.Y < posY)
                     {
-                        short toGoLeft = (short)(posX - 15), toGoRight = (short)(560 - posX);
+                        short toGoLeft = (short)(dest.X - 15), toGoRight = (short)(560 - dest.Y);
                         if (toGoLeft > toGoRight)
                         {
                             move(posX, (short)(posY - 20), direction.UP);
