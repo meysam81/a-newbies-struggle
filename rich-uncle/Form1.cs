@@ -140,17 +140,17 @@ namespace rich_uncle
             // DON't mess with the order, we use this order in the game
             Color[] c = { Color.DodgerBlue, Color.Green, Color.Red, Color.Yellow };
 
+            turnThrd = new Thread(new ThreadStart(chooseTurn));
 
             for (short i = 0; i < NumberOfPlayers; i++)
             {
-                p[i] = new Player(this, c[i], i, 12, 12);
+                p[i] = new Player(this, c[i], i, turnThrd, 12, 12);
                 t[i] = new Thread(new ThreadStart(p[i].startPlaying));
                 t[i].Name = i.ToString();
             }
             for (int i = 0; i < NumberOfPlayers; i++)
                 t[i].Start(); // players start playing
 
-            turnThrd = new Thread(new ThreadStart(chooseTurn));
             turnThrd.Start(); // start rolling dices
 
             buttonStart.Enabled = false;
@@ -209,6 +209,7 @@ namespace rich_uncle
                 nextPosition = (short)(p[turns[0]].CurrentHouse + p[turns[0]].NumberOfMovements);
 
                 t[firstToMove].Resume();
+                Thread.CurrentThread.Suspend();
 
                 for (short i = 0; i < NumberOfPlayers; i++)
                     if (i != firstToMove)
@@ -217,6 +218,8 @@ namespace rich_uncle
 
                 buyCurrentHouse(turns[0], playersName[turns[0]],
                     nextPosition); // should we buy?
+
+
                 if (currentDice == 6)
                     countTurns = 0;
                 else
@@ -256,12 +259,16 @@ namespace rich_uncle
                         p[currentTurn].NumberOfMovements) % NumberOfHouses);
 
                     t[currentTurn].Resume(); // let the player move for it's turn
+                    Thread.CurrentThread.Suspend();
+
+
 
                     if (HouseOwner[nextPosition] == -1) // the house is not bought
                         buyCurrentHouse(currentTurn, playersName[currentTurn], nextPosition);
                     else if (currentTurn != HouseOwner[nextPosition]) // it is bought, not by itself definitely
                         rentHouse(currentTurn, playersName[currentTurn], nextPosition,
                             playersName[HouseOwner[nextPosition]], HouseOwner[nextPosition]);
+
                 }
                 catch (Exception ex)
                 {

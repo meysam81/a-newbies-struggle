@@ -55,9 +55,10 @@ namespace rich_uncle
                 currentHouse = value;
             }
         }
+        public Thread mainThrd;
 
         // =================================== class public functions =======================================
-        public Player(FormMain mainForm, Color moveColor, short threadNumber,
+        public Player(FormMain mainForm, Color moveColor, short threadNumber, Thread mainThread,
             short widthX = 10, short widthY = 10)
         {
             PlayerDeposit = PlayersInitialValue;
@@ -70,7 +71,7 @@ namespace rich_uncle
             this.widthX = widthX;
             this.widthY = widthY;
             CurrentHouse = 0; // not playing just yet
-
+            mainThrd = mainThread;
             // not owning any house yet
             OwnedBlueHouses = OwnedGreenHouses = OwnedRedHouses = OwnedYellowHouses = 0;
         }
@@ -176,6 +177,8 @@ namespace rich_uncle
                         move(posX, (short)(dest.Y - 10), direction.DOWN);
                     }
                 }
+
+                mainThrd.Resume();
             }
         }
         
