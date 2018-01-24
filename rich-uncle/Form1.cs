@@ -19,7 +19,7 @@ namespace rich_uncle
         Player[] p;
         Thread turnThrd; // dice roll thread
         bool buy;
-
+        System.Media.SoundPlayer diceSound = new System.Media.SoundPlayer("dice.wav");
         // ================================== class public functions ========================================
         public FormMain()
         {
@@ -478,12 +478,12 @@ namespace rich_uncle
 
             Random generateRandom = new Random(DateTime.Now.Second);
             short result = 0;
-
-            for (int i = 0; i < 20; i++)
+            diceSound.Play();
+            for (int i = 0; i < 100; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
                 colorizeDiceRoller(back, result);
-                Thread.Sleep(5);
+                Thread.Sleep(8);
             }
             return result;
         }
@@ -505,13 +505,11 @@ namespace rich_uncle
                 return;
             }
         }
-
         private void buttonYesBuy_Click(object sender, EventArgs e)
         {
             buy = true;
             waitDecideBuyLock.Release();
         }
-
         private void buttonNoBuy_Click(object sender, EventArgs e)
         {
             buy = false;

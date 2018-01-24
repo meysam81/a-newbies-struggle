@@ -74,7 +74,6 @@ namespace rich_uncle
             // not owning any house yet
             OwnedBlueHouses = OwnedGreenHouses = OwnedRedHouses = OwnedYellowHouses = 0;
         }
-
         public void initialPoisitioning()
         {
             initPosLock.WaitOne();
@@ -84,7 +83,6 @@ namespace rich_uncle
             posY = (short)curr.Y;
             g.FillEllipse(moveBrush, posX, posY, widthX, widthY);
         }
-
         public void startPlaying()
         {
             initialPoisitioning(); // get ready to play!
