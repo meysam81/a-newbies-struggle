@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -20,6 +21,7 @@ namespace rich_uncle
         Thread turnThrd; // dice roll thread
         bool buy;
         System.Media.SoundPlayer diceSound = new System.Media.SoundPlayer("dice.wav");
+
         // ================================== class public functions ========================================
         public FormMain()
         {
@@ -242,7 +244,8 @@ namespace rich_uncle
                     p[currentTurn].NumberOfMovements = rollTheDice(p[currentTurn].MoveColor);
 
                     colorizeDiceRoller(p[currentTurn].MoveColor, p[currentTurn].NumberOfMovements);
-                    nextPosition = (short)((p[currentTurn].CurrentHouse + p[currentTurn].NumberOfMovements) % NumberOfHouses);
+                    nextPosition = (short)((p[currentTurn].CurrentHouse + 
+                        p[currentTurn].NumberOfMovements) % NumberOfHouses);
 
                     t[currentTurn].Resume(); // let the player move for it's turn
 
@@ -254,7 +257,8 @@ namespace rich_uncle
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.StackTrace, ex.Message + ex.Source, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.StackTrace, ex.Message + ex.Source,
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 } // just in case, if something goes wrong
 
@@ -467,9 +471,34 @@ namespace rich_uncle
             }
         }
         private void colorizeDiceRoller(Color back, short numberOfDice)
-        {
-            labelDice.BackColor = back;
-            labelDice.Text = numberOfDice.ToString();
+        { 
+            /* now I am proud ofthis function and all functionalizing 
+             * in my program cause it made my life a lot easier */
+            labelShow2.BackColor = back;
+            //labelDice.Text = numberOfDice.ToString();
+            switch (numberOfDice)
+            {
+                case 1:
+                    pictureBoxDice.Image = Image.FromFile("dice1.png");
+                    break;
+                case 2:
+                    pictureBoxDice.Image = Image.FromFile("dice2.png");
+                    break;
+                case 3:
+                    pictureBoxDice.Image = Image.FromFile("dice3.png");
+                    break;
+                case 4:
+                    pictureBoxDice.Image = Image.FromFile("dice4.png");
+                    break;
+                case 5:
+                    pictureBoxDice.Image = Image.FromFile("dice5.png");
+                    break;
+                case 6:
+                    pictureBoxDice.Image = Image.FromFile("dice6.png");
+                    break;
+                default:
+                    break;
+            }
         }
         private short rollTheDice(Color back)
         {
@@ -478,7 +507,11 @@ namespace rich_uncle
 
             Random generateRandom = new Random(DateTime.Now.Second);
             short result = 0;
-            diceSound.Play();
+
+
+            diceSound.Play(); // dice sound
+
+
             for (int i = 0; i < 100; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
@@ -501,7 +534,8 @@ namespace rich_uncle
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.StackTrace, ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.StackTrace, ex.Message, 
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
         }

@@ -73,7 +73,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelShow1 = new System.Windows.Forms.Label();
-            this.labelDice = new System.Windows.Forms.Label();
             this.labelPlayers = new System.Windows.Forms.Label();
             this.labelBank = new System.Windows.Forms.Label();
             this.buttonRollTheDice = new System.Windows.Forms.Button();
@@ -86,7 +85,9 @@
             this.buttonYesBuy = new System.Windows.Forms.Button();
             this.labelShow5 = new System.Windows.Forms.Label();
             this.groupBoxBuy = new System.Windows.Forms.GroupBox();
+            this.pictureBoxDice = new System.Windows.Forms.PictureBox();
             this.groupBoxBuy.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDice)).BeginInit();
             this.SuspendLayout();
             // 
             // buttonExit
@@ -662,16 +663,6 @@
             this.labelShow1.Text = "Bank";
             this.labelShow1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // labelDice
-            // 
-            this.labelDice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelDice.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.labelDice.Location = new System.Drawing.Point(688, 38);
-            this.labelDice.Name = "labelDice";
-            this.labelDice.Size = new System.Drawing.Size(54, 46);
-            this.labelDice.TabIndex = 2;
-            this.labelDice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // labelPlayers
             // 
             this.labelPlayers.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -799,6 +790,15 @@
             this.groupBoxBuy.TabIndex = 3;
             this.groupBoxBuy.TabStop = false;
             // 
+            // pictureBoxDice
+            // 
+            this.pictureBoxDice.Location = new System.Drawing.Point(688, 38);
+            this.pictureBoxDice.Name = "pictureBoxDice";
+            this.pictureBoxDice.Size = new System.Drawing.Size(54, 46);
+            this.pictureBoxDice.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxDice.TabIndex = 3;
+            this.pictureBoxDice.TabStop = false;
+            // 
             // FormMain
             // 
             this.AcceptButton = this.buttonStart;
@@ -807,6 +807,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.CancelButton = this.buttonExit;
             this.ClientSize = new System.Drawing.Size(754, 556);
+            this.Controls.Add(this.pictureBoxDice);
             this.Controls.Add(this.groupBoxBuy);
             this.Controls.Add(this.buttonRollTheDice);
             this.Controls.Add(this.labelOwners3);
@@ -818,7 +819,6 @@
             this.Controls.Add(this.labelShow3);
             this.Controls.Add(this.labelBank);
             this.Controls.Add(this.labelShow1);
-            this.Controls.Add(this.labelDice);
             this.Controls.Add(this.labelShow2);
             this.Controls.Add(this.buttonStart);
             this.Controls.Add(this.buttonExit);
@@ -869,6 +869,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rich Uncle";
             this.groupBoxBuy.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxDice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -879,7 +880,6 @@
         private System.Windows.Forms.Label labelShow2;
         private System.Windows.Forms.Label labelShow3;
         private System.Windows.Forms.Label labelShow1;
-        private System.Windows.Forms.Label labelDice;
         private System.Windows.Forms.Label labelPlayers;
         private System.Windows.Forms.Label labelBank;
         private System.Windows.Forms.Label label1;
@@ -932,6 +932,7 @@
         private System.Windows.Forms.Button buttonYesBuy;
         private System.Windows.Forms.Label labelShow5;
         private System.Windows.Forms.GroupBox groupBoxBuy;
+        private System.Windows.Forms.PictureBox pictureBoxDice;
     }
 }
 
