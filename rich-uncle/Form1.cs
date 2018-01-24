@@ -434,17 +434,18 @@ namespace rich_uncle
 
         }
         private void changeGroupBuyButtons(bool enable, Color buttonColor,
-            Color groupBoxColor, string message)
+            Color groupBoxColor = new Color(), string message = null)
         {
-            groupBoxBuy.BackColor = groupBoxColor;
+            if (groupBoxColor != new Color())
+                groupBoxBuy.BackColor = groupBoxColor;
 
             buttonYesBuy.Enabled = enable;
             buttonNoBuy.Enabled = enable;
 
             buttonYesBuy.BackColor = buttonColor;
             buttonNoBuy.BackColor = buttonColor;
-
-            labelShow5.Text = message;
+            if (message != null)
+                labelShow5.Text = message;
         }
         private void rentHouse(short playerIndex, string playerName,
             short houseToBeBougth, string ownerName, short ownerNumber)
@@ -467,11 +468,9 @@ namespace rich_uncle
             p[playerIndex].PlayerDeposit -= (short)cost;
             p[ownerNumber].PlayerDeposit += (short)RentHouse[houseToBeBougth];
 
-            //Thread.Sleep(3000);
 
 
-            changeGroupBuyButtons(false, BackColor,
-                BackColor, string.Format("Buy?"));
+            changeGroupBuyButtons(false, BackColor);
 
         }
         private void showBankDeposit(uint bank)
