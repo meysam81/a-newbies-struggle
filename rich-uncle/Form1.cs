@@ -234,8 +234,14 @@ namespace rich_uncle
 
 
 
+            bool gameFinished = true;
+
             do
             {
+
+                gameFinished = true;
+
+
                 if (countTurns >= NumberOfPlayers)
                     countTurns = 0;
 
@@ -245,6 +251,13 @@ namespace rich_uncle
 
                 try
                 {
+
+                    // check for game end
+                    for (ushort i = 1; i <= NumberOfHouses; i++)
+                        if (HouseOwner[i] < 0) // game still continues; houses are left to buy
+                            gameFinished = false;
+
+
 
 
                     short currentTurn = turns[countTurns];
@@ -297,7 +310,11 @@ namespace rich_uncle
                 
 
                 countTurns++;
-            } while (true); // condition is for test ONLY
+            } while (!gameFinished); // condition is for test ONLY
+
+
+
+
         }
         private void buyCurrentHouse(short playerIndex, string playerName, short houseToBeBougth)
         {
