@@ -72,7 +72,7 @@ namespace rich_uncle
 
 
             // now color the houses
-            Color[] c = { Color.Blue, Color.Green, Color.Red, Color.Yellow };
+            Color[] c = { Color.DodgerBlue, Color.Green, Color.Red, Color.Yellow };
             short blues = 0,
                 reds = 0,
                 greens = 0,
