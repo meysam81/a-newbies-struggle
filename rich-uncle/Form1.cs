@@ -739,223 +739,223 @@ namespace rich_uncle
                 {
                     case 1:
                         label1.Text =
-                            string.Format("Furniture\n") +
+                            string.Format("1. Furniture\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 2:
                         label2.Text =
-                            string.Format("Depart.\n") +
+                            string.Format("2. Depart.\n") +
                         string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 3:
                         label3.Text =
-                            string.Format("Fish\n") +
+                            string.Format("3. Fish\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 4:
                         label4.Text =
-                            string.Format("Grocery\n") +
+                            string.Format("4. Grocery\n") +
                         string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 5:
                         label5.Text =
-                            string.Format("Shoe\n") +
+                            string.Format("5. Shoe\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 6:
                         label6.Text =
-                            string.Format("Dairy\n") +
+                            string.Format("6. Dairy\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 7:
                         label7.Text =
-                            string.Format("Bonus\n");
+                            string.Format("7. Bonus\n");
                         break;
                     case 8:
                         label8.Text =
-                            string.Format("Barber\n") +
+                            string.Format("8. Barber\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 9:
                         label9.Text =
-                            string.Format("Move back 4 houses!\n");
+                            string.Format("9. Move back 4 houses!\n");
                         break;
                     case 10:
                         label10.Text =
-                            string.Format("Florist\n") +
+                            string.Format("10. Florist\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 11:
                         label11.Text =
-                            string.Format("Telephone\n") +
+                            string.Format("11. Phone\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 12:
                         label12.Text =
-                            string.Format("Airline\n") +
+                            string.Format("12. Airline\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 13:
                         label13.Text =
-                            string.Format("Taxi\n") +
+                            string.Format("13. Taxi\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 14:
                         label14.Text =
-                            string.Format("Test luck!\n");
+                            string.Format("14. Test luck!\n");
                         break;
                     case 15:
                         label15.Text =
-                            string.Format("Railroad\n") +
+                            string.Format("15. Railroad\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 16:
                         label16.Text =
-                            string.Format("Ooops!\n");
+                            string.Format("16. Ooops!\n");
                         break;
                     case 17:
                         label17.Text =
-                            string.Format("Busline!\n") +
+                            string.Format("17. Busline!\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 18:
                         label18.Text =
-                            string.Format("Circus\n") +
+                            string.Format("18. Circus\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 19:
                         label19.Text =
-                            string.Format("Book\n") +
+                            string.Format("19. Book\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 20:
                         label20.Text =
-                            string.Format("Move forward 5 houses!\n");
+                            string.Format("20. Move forward 5 houses!\n");
                         break;
                     case 21:
                         label21.Text =
-                            string.Format("Test luck!\n");
+                            string.Format("21. Test luck!\n");
                         break;
                     case 22:
                         label22.Text =
-                            string.Format("Baseball\n") +
+                            string.Format("22. Baseball\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 23:
                         label23.Text =
-                            string.Format("Magazine\n") +
+                            string.Format("23. Journal\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 24:
                         label24.Text =
-                            string.Format("Steel\n") +
+                            string.Format("24. Steel\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 25:
                         label25.Text =
-                            string.Format("Tire\n") +
+                            string.Format("25. Tire\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 26:
                         label26.Text =
-                            string.Format("Electric\n") +
+                            string.Format("26. Electric\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 27:
                         label27.Text =
-                            string.Format("Television\n") +
+                            string.Format("27. TV\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 28:
                         label28.Text =
-                            string.Format("Diamond\n") +
+                            string.Format("28. Diamond\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 29:
                         label29.Text =
-                            string.Format("Watch\n") +
+                            string.Format("29. Watch\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 30:
                         label30.Text =
-                            string.Format("Oil\n") +
+                            string.Format("30. Oil\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 31:
                         label31.Text =
-                            string.Format("Farm\n") +
+                            string.Format("31. Farm\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 32:
                         label32.Text =
-                            string.Format("Test luck!\n");
+                            string.Format("32. Test luck!\n");
                         break;
                     case 33:
                         label33.Text =
-                            string.Format("Orange\n") +
+                            string.Format("33. Orange\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 34:
                         label34.Text =
-                            string.Format("Plantation\n") +
+                            string.Format("34. Planting\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 35:
                         label35.Text =
-                            string.Format("Journal\n") +
+                            string.Format("35. Journal\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 36:
                         label36.Text =
-                            string.Format("Ooops!\n");
+                            string.Format("36. Ooops!\n");
                         break;
                     case 37:
                         label37.Text =
-                            string.Format("Radio\n") +
+                            string.Format("37. Radio\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 38:
                         label38.Text =
-                            string.Format("Car\n") +
+                            string.Format("38. Car\n") +
                             string.Format("Buy: {0}\nRent: {1}",
                             BuyHouse[number], RentHouse[number]);
                         break;
                     case 39:
                         label39.Text =
-                            string.Format("Move back 3 houses!\n");
+                            string.Format("39. Move back 3 houses!\n");
                         break;
                     case 40:
                         label40.Text =
-                            string.Format("Bonus\n");
+                            string.Format("40. Bonus\n");
                         break;
                     default:
                         break;

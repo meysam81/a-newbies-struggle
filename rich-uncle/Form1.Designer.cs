@@ -120,6 +120,7 @@
             // 
             this.label39.BackColor = System.Drawing.Color.Transparent;
             this.label39.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label39.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label39.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label39.Location = new System.Drawing.Point(426, 30);
             this.label39.Name = "label39";
@@ -132,6 +133,7 @@
             // 
             this.label20.BackColor = System.Drawing.Color.Transparent;
             this.label20.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label20.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label20.Location = new System.Drawing.Point(228, 250);
             this.label20.Name = "label20";
@@ -144,6 +146,7 @@
             // 
             this.label9.BackColor = System.Drawing.Color.Transparent;
             this.label9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label9.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label9.Location = new System.Drawing.Point(492, 360);
             this.label9.Name = "label9";
@@ -176,6 +179,7 @@
             // 
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label8.Image = global::rich_uncle.Properties.Resources.barber_shop;
             this.label8.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label8.Location = new System.Drawing.Point(492, 470);
@@ -189,6 +193,7 @@
             // 
             this.label16.BackColor = System.Drawing.Color.Transparent;
             this.label16.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label16.Image = global::rich_uncle.Properties.Resources._1000_lose;
             this.label16.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label16.Location = new System.Drawing.Point(30, 360);
@@ -202,6 +207,7 @@
             // 
             this.label24.BackColor = System.Drawing.Color.Transparent;
             this.label24.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label24.Image = global::rich_uncle.Properties.Resources.steel_co;
             this.label24.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label24.Location = new System.Drawing.Point(492, 250);
@@ -215,6 +221,7 @@
             // 
             this.label40.BackColor = System.Drawing.Color.Transparent;
             this.label40.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label40.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label40.Image = global::rich_uncle.Properties.Resources._3000_win;
             this.label40.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label40.Location = new System.Drawing.Point(492, 30);
@@ -228,6 +235,7 @@
             // 
             this.label36.BackColor = System.Drawing.Color.Transparent;
             this.label36.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label36.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label36.Image = global::rich_uncle.Properties.Resources._1500_lose;
             this.label36.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label36.Location = new System.Drawing.Point(228, 30);
@@ -241,6 +249,7 @@
             // 
             this.label32.BackColor = System.Drawing.Color.Transparent;
             this.label32.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label32.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label32.Image = global::rich_uncle.Properties.Resources.consult;
             this.label32.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label32.Location = new System.Drawing.Point(30, 140);
@@ -254,6 +263,7 @@
             // 
             this.label28.BackColor = System.Drawing.Color.Transparent;
             this.label28.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label28.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label28.Image = global::rich_uncle.Properties.Resources.diamond_farm;
             this.label28.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label28.Location = new System.Drawing.Point(294, 140);
@@ -267,6 +277,7 @@
             // 
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label12.Image = global::rich_uncle.Properties.Resources.air_line;
             this.label12.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label12.Location = new System.Drawing.Point(294, 360);
@@ -280,6 +291,7 @@
             // 
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label15.Image = global::rich_uncle.Properties.Resources.railroad_line;
             this.label15.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label15.Location = new System.Drawing.Point(96, 360);
@@ -293,6 +305,7 @@
             // 
             this.label23.BackColor = System.Drawing.Color.Transparent;
             this.label23.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label23.Image = global::rich_uncle.Properties.Resources.weekly_magazine;
             this.label23.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label23.Location = new System.Drawing.Point(426, 250);
@@ -306,6 +319,7 @@
             // 
             this.label35.BackColor = System.Drawing.Color.Transparent;
             this.label35.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label35.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label35.Image = global::rich_uncle.Properties.Resources.newspaper;
             this.label35.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label35.Location = new System.Drawing.Point(162, 30);
@@ -319,6 +333,7 @@
             // 
             this.label31.BackColor = System.Drawing.Color.Transparent;
             this.label31.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label31.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label31.Image = global::rich_uncle.Properties.Resources.farm;
             this.label31.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label31.Location = new System.Drawing.Point(96, 140);
@@ -332,6 +347,7 @@
             // 
             this.label27.BackColor = System.Drawing.Color.Transparent;
             this.label27.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label27.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label27.Image = global::rich_uncle.Properties.Resources.tv_set_co;
             this.label27.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label27.Location = new System.Drawing.Point(360, 140);
@@ -345,6 +361,7 @@
             // 
             this.label19.BackColor = System.Drawing.Color.Transparent;
             this.label19.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label19.Image = global::rich_uncle.Properties.Resources.book_of_the_year;
             this.label19.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label19.Location = new System.Drawing.Point(162, 250);
@@ -358,6 +375,7 @@
             // 
             this.label4.BackColor = System.Drawing.Color.Transparent;
             this.label4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label4.Image = global::rich_uncle.Properties.Resources.grocery_chain;
             this.label4.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label4.Location = new System.Drawing.Point(228, 470);
@@ -371,6 +389,7 @@
             // 
             this.label11.BackColor = System.Drawing.Color.Transparent;
             this.label11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label11.Image = global::rich_uncle.Properties.Resources.telephone_co;
             this.label11.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label11.Location = new System.Drawing.Point(360, 360);
@@ -384,6 +403,7 @@
             // 
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label7.Image = global::rich_uncle.Properties.Resources._5000_win;
             this.label7.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label7.Location = new System.Drawing.Point(426, 470);
@@ -397,6 +417,7 @@
             // 
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label14.Image = global::rich_uncle.Properties.Resources.consult;
             this.label14.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label14.Location = new System.Drawing.Point(162, 360);
@@ -410,6 +431,7 @@
             // 
             this.label22.BackColor = System.Drawing.Color.Transparent;
             this.label22.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label22.Image = global::rich_uncle.Properties.Resources.baseball_club;
             this.label22.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label22.Location = new System.Drawing.Point(360, 250);
@@ -423,6 +445,7 @@
             // 
             this.label38.BackColor = System.Drawing.Color.Transparent;
             this.label38.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label38.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label38.Image = global::rich_uncle.Properties.Resources.street_car_line;
             this.label38.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label38.Location = new System.Drawing.Point(360, 30);
@@ -436,6 +459,7 @@
             // 
             this.label34.BackColor = System.Drawing.Color.Transparent;
             this.label34.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label34.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label34.Image = global::rich_uncle.Properties.Resources.plantation_farm;
             this.label34.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label34.Location = new System.Drawing.Point(96, 30);
@@ -449,6 +473,7 @@
             // 
             this.label30.BackColor = System.Drawing.Color.Transparent;
             this.label30.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label30.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label30.Image = global::rich_uncle.Properties.Resources.oil_weel;
             this.label30.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label30.Location = new System.Drawing.Point(162, 140);
@@ -462,6 +487,7 @@
             // 
             this.label26.BackColor = System.Drawing.Color.Transparent;
             this.label26.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label26.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label26.Image = global::rich_uncle.Properties.Resources.electric_co;
             this.label26.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label26.Location = new System.Drawing.Point(426, 140);
@@ -475,6 +501,7 @@
             // 
             this.label18.BackColor = System.Drawing.Color.Transparent;
             this.label18.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label18.Image = global::rich_uncle.Properties.Resources.circus;
             this.label18.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label18.Location = new System.Drawing.Point(96, 250);
@@ -488,6 +515,7 @@
             // 
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label3.Image = global::rich_uncle.Properties.Resources.fish_market;
             this.label3.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label3.Location = new System.Drawing.Point(162, 470);
@@ -501,6 +529,7 @@
             // 
             this.label10.BackColor = System.Drawing.Color.Transparent;
             this.label10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label10.Image = global::rich_uncle.Properties.Resources.flourish_shops;
             this.label10.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label10.Location = new System.Drawing.Point(426, 360);
@@ -514,6 +543,7 @@
             // 
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label6.Image = global::rich_uncle.Properties.Resources.dairy;
             this.label6.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label6.Location = new System.Drawing.Point(360, 470);
@@ -527,6 +557,7 @@
             // 
             this.label13.BackColor = System.Drawing.Color.Transparent;
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label13.Image = global::rich_uncle.Properties.Resources.taxi_fleet;
             this.label13.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label13.Location = new System.Drawing.Point(228, 360);
@@ -540,6 +571,7 @@
             // 
             this.label21.BackColor = System.Drawing.Color.Transparent;
             this.label21.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label21.Image = global::rich_uncle.Properties.Resources.consult;
             this.label21.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label21.Location = new System.Drawing.Point(294, 250);
@@ -553,6 +585,7 @@
             // 
             this.label37.BackColor = System.Drawing.Color.Transparent;
             this.label37.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label37.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label37.Image = global::rich_uncle.Properties.Resources.radio_station;
             this.label37.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label37.Location = new System.Drawing.Point(294, 30);
@@ -566,6 +599,7 @@
             // 
             this.label33.BackColor = System.Drawing.Color.Transparent;
             this.label33.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label33.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label33.Image = global::rich_uncle.Properties.Resources.orange_grove;
             this.label33.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label33.Location = new System.Drawing.Point(30, 30);
@@ -579,6 +613,7 @@
             // 
             this.label29.BackColor = System.Drawing.Color.Transparent;
             this.label29.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label29.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label29.Image = global::rich_uncle.Properties.Resources.watch_co;
             this.label29.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label29.Location = new System.Drawing.Point(228, 140);
@@ -592,6 +627,7 @@
             // 
             this.label25.BackColor = System.Drawing.Color.Transparent;
             this.label25.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label25.Image = global::rich_uncle.Properties.Resources.tire_co;
             this.label25.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label25.Location = new System.Drawing.Point(492, 140);
@@ -605,6 +641,7 @@
             // 
             this.label17.BackColor = System.Drawing.Color.Transparent;
             this.label17.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label17.Image = global::rich_uncle.Properties.Resources.bus_line;
             this.label17.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label17.Location = new System.Drawing.Point(30, 250);
@@ -618,6 +655,7 @@
             // 
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label2.Image = global::rich_uncle.Properties.Resources.department_store1;
             this.label2.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label2.Location = new System.Drawing.Point(96, 470);
@@ -631,6 +669,7 @@
             // 
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label5.Image = global::rich_uncle.Properties.Resources.shoe_shine_stand;
             this.label5.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label5.Location = new System.Drawing.Point(294, 470);
@@ -644,6 +683,7 @@
             // 
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.label1.Image = global::rich_uncle.Properties.Resources.furniture_store;
             this.label1.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.label1.Location = new System.Drawing.Point(30, 470);
