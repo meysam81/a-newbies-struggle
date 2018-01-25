@@ -60,7 +60,7 @@
             this.buttonExit.Location = new System.Drawing.Point(207, 155);
             this.buttonExit.Name = "buttonExit";
             this.buttonExit.Size = new System.Drawing.Size(75, 23);
-            this.buttonExit.TabIndex = 4;
+            this.buttonExit.TabIndex = 5;
             this.buttonExit.Text = "Exit";
             this.buttonExit.UseVisualStyleBackColor = true;
             this.buttonExit.Click += new System.EventHandler(this.buttonExit_Click);
@@ -71,7 +71,7 @@
             this.buttonSave.Location = new System.Drawing.Point(126, 155);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(75, 23);
-            this.buttonSave.TabIndex = 3;
+            this.buttonSave.TabIndex = 4;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
@@ -184,7 +184,7 @@
             0});
             this.finishRoundBonus.Name = "finishRoundBonus";
             this.finishRoundBonus.Size = new System.Drawing.Size(120, 20);
-            this.finishRoundBonus.TabIndex = 2;
+            this.finishRoundBonus.TabIndex = 3;
             this.finishRoundBonus.Value = new decimal(new int[] {
             800,
             0,
