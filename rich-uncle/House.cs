@@ -30,7 +30,7 @@ namespace rich_uncle
                 housesLock[labelNumber].WaitOne();
                 Point result = new Point(posX, posY);
                 posX += 15; // for gaps between 2 players in a same house
-                if (posX >= (labelStartX + 30))
+                if (posX > (labelStartX + 45))
                     posX = labelStartX;
                 housesLock[labelNumber].Release();
                 return result;

@@ -126,11 +126,11 @@ namespace rich_uncle
         }
         private void buttonStart_Click(object sender, EventArgs e)
         {
-            GlobalVariables glv = new GlobalVariables(this);
 
             if (!init())
                 return;
 
+            GlobalVariables glv = new GlobalVariables(this);
 
 
             initializeHouses();
@@ -159,9 +159,7 @@ namespace rich_uncle
 
             buttonStart.Enabled = false;
             buttonStart.Visible = false;
-
-            AcceptButton = buttonRollTheDice;
-
+            
         }
         // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
         private bool init() // get config's from user
@@ -197,13 +195,13 @@ namespace rich_uncle
                 }
             }
 
-            
+
             return true;
-            
+
         }
         private void initializeHouses()
         {
-            
+
             for (ushort number = 1; number <= NumberOfHouses; number++)
             {
                 switch (number)
@@ -339,6 +337,7 @@ namespace rich_uncle
             string[] playersName = { "Blue", "Green", "Red", "Yellow" };
 
             short[] turns = { -1, -1, -1, -1 };
+            bool[] stuck = { false, false, false, false };
 
             // first dice roll
             writeResultOfPlayers(playersName);
@@ -369,8 +368,10 @@ namespace rich_uncle
 
                 nextPosition = (short)(p[turns[0]].CurrentHouse + p[turns[0]].NumberOfMovements);
 
-                t[firstToMove].Resume();
-                Thread.CurrentThread.Suspend();
+                //t[firstToMove].Resume();
+                //Thread.CurrentThread.Suspend();
+                playerMoveLock[firstToMove].Release();
+                chooseTurnLock.WaitOne();
 
                 for (short i = 0; i < NumberOfPlayers; i++)
                     if (i != firstToMove)
@@ -412,29 +413,56 @@ namespace rich_uncle
                 showBankDeposit(BankDeposit);
 
 
+
                 try
                 {
 
                     // check for game end
                     for (ushort i = 1; i <= NumberOfHouses; i++)
                         if (HouseOwner[i] < 0) // game still continues; houses are left to buy
+                        {
                             gameFinished = false;
-
-
-
+                            break;
+                        }
 
                     short currentTurn = turns[countTurns];
 
+                    if (stuck[currentTurn])
+                    {
+                        changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                            string.Format("Player {0} is Stuck!",
+                            playersName[currentTurn]));
+
+                        // dont stuck next round
+                        stuck[currentTurn] = false;
+
+                        // go to the next player
+                        countTurns++;
+
+                        continue;
+                    }
+
+                    // roll the dice
                     short currentDice = rollTheDice(p[currentTurn].MoveColor);
+
+                    // bonus for a dice of 6
                     if (currentDice == 6)
                         countTurns--; // a player with dice 6, gets a reward
+
+                    // let the player know it's dice number for movement in Player.cs
                     p[currentTurn].NumberOfMovements = currentDice;
 
+
+                    // here's how magic happens in the GUI for dice roll; I love this part
                     colorizeDiceRoller(p[currentTurn].MoveColor, p[currentTurn].NumberOfMovements);
 
 
+
+                    // to check the house rul, whether it is bought, a bonus house, etc.
                     nextPosition = (short)(p[currentTurn].CurrentHouse +
                         p[currentTurn].NumberOfMovements);
+
+
 
                     if (nextPosition > 40) // player finished a round
                     {
@@ -445,23 +473,253 @@ namespace rich_uncle
                             playersName[currentTurn], FinishRoundBonus));
 
 
-                        p[currentTurn].PlayerDeposit += (short)FinishRoundBonus;
-                        BankDeposit -= FinishRoundBonus;
+                        BankDeposit -= FinishRoundBonus; // get from bank ...
+                        p[currentTurn].PlayerDeposit += // ... get it to the player
+                            (short)FinishRoundBonus;
                     }
 
 
-                    t[currentTurn].Resume(); // let the player move for it's turn
-                    // wait for the player to finish moving, then roll the dice again
-                    Thread.CurrentThread.Suspend();
+                    //t[currentTurn].Resume(); // let the player move for it's turn
+                    //// wait for the player to finish moving, then roll the dice again
+                    //Thread.CurrentThread.Suspend(); // dont move unless the player sit in it's house
+                    playerMoveLock[currentTurn].Release();
+                    chooseTurnLock.WaitOne();
+
+                    // until deciding the destiny of the current house the player is on
+                    bool stillMove = false;
+                    do
+                    {
+                        switch (HouseOwner[nextPosition])
+                        {
+                            case -1: // the house is not bought
+                                stillMove = false;
+                                buyCurrentHouse(currentTurn, playersName[currentTurn], nextPosition);
+                                break;
 
 
 
-                    if (HouseOwner[nextPosition] == -1) // the house is not bought
-                        buyCurrentHouse(currentTurn, playersName[currentTurn], nextPosition);
-                    else if (currentTurn != HouseOwner[nextPosition]) // it is bought, not by itself definitely
-                        rentHouse(currentTurn, playersName[currentTurn], nextPosition,
-                            playersName[HouseOwner[nextPosition]], HouseOwner[nextPosition]);
+                            case -2: // bonus (-2)
+                                stillMove = false;
+                                short amount = 0;
+                                switch (nextPosition)
+                                {
+                                    case 7:
+                                        amount = 5000;
+                                        break;
+                                    case 40:
+                                        amount = 3000;
+                                        break;
+                                    default:
+                                        break;
+                                }
 
+                                changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} won {1} as a bonus",
+                                            playersName[currentTurn], amount));
+
+                                BankDeposit -= (ushort)amount;
+                                p[currentTurn].PlayerDeposit += (short)amount;
+                                break;
+
+
+
+                            case -3: // lose (-3)
+                                stillMove = false;
+                                amount = 0;
+                                switch (nextPosition)
+                                {
+                                    case 16:
+                                        amount = 1000;
+                                        break;
+                                    case 36:
+                                        amount = 1500;
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+
+                                changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} lost {1} to the bank",
+                                            playersName[currentTurn], amount));
+
+
+                                p[currentTurn].PlayerDeposit -= (short)amount; // get from player ...
+                                BankDeposit += (ushort)amount; // ... and give it to the bank
+                                break;
+
+
+
+
+                            case -4: // move forward (-4) ...
+                            case -5: // ... or backward (-5)
+                                stillMove = true;
+                                amount = 0;
+                                switch (nextPosition)
+                                { // number of spaces to go backward
+                                    case 9:
+                                        amount = -4;
+                                        break;
+                                    case 20:
+                                        amount = 5;
+                                        break;
+                                    case 39:
+                                        amount = -3;
+                                        break;
+                                    default:
+                                        break;
+                                }
+
+                                p[currentTurn].NumberOfMovements = amount;
+
+                                // for the next house the player is going to be on
+                                nextPosition = (short)(p[currentTurn].CurrentHouse +
+                                                p[currentTurn].NumberOfMovements);
+
+                                //t[currentTurn].Resume(); // let the player move for it's turn
+                                //// wait for the player to finish moving, then roll the dice again
+                                //Thread.CurrentThread.Suspend();
+                                playerMoveLock[currentTurn].Release();
+                                chooseTurnLock.WaitOne();
+
+
+                                break;
+                            case -6: // luck houses (-6)
+
+                                amount = 0;
+                                switch (nextPosition)
+                                {
+                                    case 14: // even number, go forward or stuck next round otherwise
+
+                                        changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} roll the dice. " +
+                                            "If even, go forward, stuck next round otherwise.",
+                                            playersName[currentTurn]));
+
+                                        currentDice = rollTheDice(p[currentTurn].MoveColor);
+
+                                        if (currentDice % 2 == 0) // even
+                                        {
+                                            stillMove = true;
+                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} roll the dice " +
+                                            "for number of houses.",
+                                            playersName[currentTurn]));
+
+                                            currentDice = rollTheDice(p[currentTurn].MoveColor);
+
+                                            p[currentTurn].NumberOfMovements = currentDice;
+
+                                            nextPosition = (short)(p[currentTurn].CurrentHouse +
+                                                p[currentTurn].NumberOfMovements);
+
+                                            //t[currentTurn].Resume(); // let the player move for it's turn
+                                            //// wait for the player to finish moving, then roll the dice again
+                                            //Thread.CurrentThread.Suspend();
+                                            playerMoveLock[currentTurn].Release();
+                                            chooseTurnLock.WaitOne();
+
+                                        }
+                                        else // otherwise; stuck
+                                        {
+                                            stillMove = false;
+                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                                string.Format("Player {0} is stuck for the next round.",
+                                                playersName[currentTurn]));
+
+
+                                            stuck[currentTurn] = true;
+                                        }
+
+
+                                        break;
+                                    case 21: // even number, win money or go backward otherwise
+
+                                        changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} roll the dice. " +
+                                            "If even, win money, go backward otherwise.",
+                                            playersName[currentTurn]));
+
+
+                                        currentDice = rollTheDice(p[currentTurn].MoveColor);
+
+                                        if (currentDice % 2 == 0) // even
+                                        {
+                                            stillMove = false;
+                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} won 1500 points",
+                                            playersName[currentTurn]));
+
+                                            BankDeposit -= 1500;
+                                            p[currentTurn].PlayerDeposit += 1500;
+
+                                        }
+                                        else // otherwise; go backward
+                                        {
+                                            stillMove = true;
+                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} roll the dice " +
+                                            "for number of houses.",
+                                            playersName[currentTurn]));
+
+                                            currentDice = rollTheDice(p[currentTurn].MoveColor);
+
+                                            p[currentTurn].NumberOfMovements = (short)(-currentDice);
+
+                                            nextPosition = (short)(p[currentTurn].CurrentHouse +
+                                                p[currentTurn].NumberOfMovements);
+
+                                            //t[currentTurn].Resume(); // let the player move for it's turn
+                                            //// wait for the player to finish moving, then roll the dice again
+                                            //Thread.CurrentThread.Suspend();
+                                            playerMoveLock[currentTurn].Release();
+                                            chooseTurnLock.WaitOne();
+                                        }
+
+                                        break;
+                                    case 32: // even number, stuck next round or lose money otherwise
+
+                                        stillMove = false;
+
+                                        changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} roll the dice. " +
+                                            "If even, win money, go backward otherwise.",
+                                            playersName[currentTurn]));
+
+                                        currentDice = rollTheDice(p[currentTurn].MoveColor);
+
+                                        if (currentDice % 2 == 0) // even
+                                        {
+                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                                string.Format("Player {0} is stuck for the next round.",
+                                                playersName[currentTurn]));
+
+
+                                            stuck[currentTurn] = true;
+                                        }
+                                        else
+                                        {
+                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                            string.Format("Player {0} lost 1000 points to bank",
+                                            playersName[currentTurn]));
+
+                                            p[currentTurn].PlayerDeposit -= 1000;
+                                            BankDeposit += 1000;
+                                        }
+                                        break;
+                                    default:
+                                        break;
+                                }
+                                break;
+                            default: // it is bought, not by itself definitely
+                                stillMove = false;
+                                rentHouse(currentTurn, playersName[currentTurn], nextPosition,
+                                        playersName[HouseOwner[nextPosition]], HouseOwner[nextPosition]);
+                                break;
+
+
+                        }
+                    } while (stillMove);
                 }
                 catch (Exception ex)
                 {
@@ -469,6 +727,7 @@ namespace rich_uncle
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 } // just in case, if something goes wrong
+
 
 
 
@@ -481,8 +740,9 @@ namespace rich_uncle
 
 
             MessageBox.Show(string.Format("Player {0} won the game with {1} points!"
+
                 , playersName[maxPoint], gameWinner)
-                , "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    , "Game Over", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 
             buttonExit_Click(null, null); // exit the program
@@ -596,14 +856,14 @@ namespace rich_uncle
             }
 
         }
-        private void changeGroupBuyButtons(bool enable, Color buttonColor,
+        private void changeGroupBuyButtons(bool enableButtons, Color buttonColor,
             Color groupBoxColor = new Color(), string message = null)
         {
             if (groupBoxColor != new Color())
                 groupBoxBuy.BackColor = groupBoxColor;
 
-            buttonYesBuy.Enabled = enable;
-            buttonNoBuy.Enabled = enable;
+            buttonYesBuy.Enabled = enableButtons;
+            buttonNoBuy.Enabled = enableButtons;
 
             buttonYesBuy.BackColor = buttonColor;
             buttonNoBuy.BackColor = buttonColor;
@@ -857,7 +1117,7 @@ namespace rich_uncle
             diceSound.Play(); // dice sound
 
 
-            for (int i = 0; i < 60; i++)
+            for (int i = 0; i < 100; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
                 colorizeDiceRoller(back, result);

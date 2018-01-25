@@ -133,7 +133,7 @@
             this.bankDeposit.Size = new System.Drawing.Size(120, 20);
             this.bankDeposit.TabIndex = 1;
             this.bankDeposit.Value = new decimal(new int[] {
-            10000,
+            15000,
             0,
             0,
             0});

@@ -36,7 +36,7 @@ namespace rich_uncle
             }
             set
             {
-                if (value >= 1 && value <= 6)
+                if ((value >= 1 && value <= 6) || (value >= -6 && value <= -1))
                     numberOfMovements = value;
                 else
                     throw new Exception("Dice must be between 1-6 inclusively");
@@ -89,7 +89,8 @@ namespace rich_uncle
             initialPoisitioning(); // get ready to play!
             while (true)
             {
-                Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
+                //Thread.CurrentThread.Suspend(); // wait for wake up call (wait for TURN)
+                playerMoveLock[threadNumber].WaitOne();
                 Point dest;
                 if (CurrentHouse == 0) // before the game starts
                 {
@@ -103,7 +104,7 @@ namespace rich_uncle
                     move((short)(posX + 11), posY, direction.RIGHT);
                     move(posX, 445, direction.DOWN);
                     move(posX, 445, direction.UP);
-                    move((short)(dest.X + 25), posY, direction.RIGHT);
+                    move((short)(dest.X + 15), posY, direction.RIGHT);
                     move(posX, (short)(dest.Y - 10), direction.DOWN);
 
                     
@@ -119,7 +120,7 @@ namespace rich_uncle
                     move(posX, 5, direction.UP);
                     move(560, posY, direction.RIGHT);
                     move(posX, 445, direction.DOWN);
-                    move((short)(dest.X + 25), posY, direction.LEFT);
+                    move((short)(dest.X + 15), posY, direction.LEFT);
                     move(posX, (short)(dest.Y - 10), direction.DOWN);
                 }
                 else // still on the same round
@@ -130,13 +131,30 @@ namespace rich_uncle
 
                     if (dest.Y < posY)
                     {
-                        short toGoLeft = (short)(dest.X - 15), toGoRight = (short)(560 - dest.Y);
-                        if (toGoLeft > toGoRight)
+                        //short toGoLeft = (short)(dest.X - 15), toGoRight = (short)(560 - dest.X);
+
+                        if (posY > 440) // first row
                         {
                             move(posX, (short)(posY - 20), direction.UP);
                             move(560, posY, direction.RIGHT);
                             move(posX, (short)(dest.Y - 25), direction.UP);
-                            move((short)(dest.X + 25), posY, direction.LEFT);
+                            move((short)(dest.X + 15), posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                        else if (posY > 330)
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(15, posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 25), direction.UP);
+                            move((short)(dest.X + 15), posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                        else if (posY > 220)
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(560, posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 25), direction.UP);
+                            move((short)(dest.X + 15), posY, direction.LEFT);
                             move(posX, (short)(dest.Y - 10), direction.DOWN);
                         }
                         else
@@ -144,20 +162,56 @@ namespace rich_uncle
                             move(posX, (short)(posY - 20), direction.UP);
                             move(15, posY, direction.LEFT);
                             move(posX, (short)(dest.Y - 25), direction.UP);
-                            move((short)(dest.X + 25), posY, direction.RIGHT);
+                            move((short)(dest.X + 15), posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                    }
+                    else if ((dest.Y - 10) > posY )
+                    {
+                        if (posY > 440) // first row
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(15, posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 25), direction.DOWN);
+                            move((short)(dest.X + 15), posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                        else if (posY > 330)
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(560, posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 25), direction.DOWN);
+                            move((short)(dest.X + 15), posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                        else if (posY > 220)
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(15, posY, direction.LEFT);
+                            move(posX, (short)(dest.Y - 25), direction.DOWN);
+                            move((short)(dest.X + 15), posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 10), direction.DOWN);
+                        }
+                        else
+                        {
+                            move(posX, (short)(posY - 20), direction.UP);
+                            move(560, posY, direction.RIGHT);
+                            move(posX, (short)(dest.Y - 25), direction.DOWN);
+                            move((short)(dest.X + 15), posY, direction.LEFT);
                             move(posX, (short)(dest.Y - 10), direction.DOWN);
                         }
                     }
                     else
                     {
                         move(posX, (short)(posY - 20), direction.UP);
-                        move((short)(dest.X + 25), posY, direction.LEFT);
-                        move((short)(dest.X + 25), posY, direction.RIGHT);
+                        move((short)(dest.X + 15), posY, direction.LEFT);
+                        move((short)(dest.X + 15), posY, direction.RIGHT);
                         move(posX, (short)(dest.Y - 10), direction.DOWN);
                     }
                 }
 
-                mainThrd.Resume();
+                //mainThrd.Resume();
+                chooseTurnLock.Release();
             }
         }
         

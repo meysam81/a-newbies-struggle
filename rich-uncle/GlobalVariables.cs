@@ -65,6 +65,10 @@ namespace rich_uncle
             housesLock = new Semaphore[NumberOfHouses + 1]; // [0 - 40] because arrays start from zero
             housesInTheGame = new House[NumberOfHouses + 1]; // [0 - 40] because arrays start from zero
 
+            playerMoveLock = new Semaphore[NumberOfPlayers];
+            for (ushort i = 0; i < NumberOfPlayers; i++)
+                playerMoveLock[i] = new Semaphore(0, 1);
+
             buyHouse = new ushort[NumberOfHouses + 1];
             rentHouse = new ushort[NumberOfHouses + 1];
             houseColors = new Color[NumberOfHouses + 1]; // ignore 0, go through 1-40
@@ -128,6 +132,33 @@ namespace rich_uncle
             for (short i = 1; i <= NumberOfHouses; i++)
                 HouseOwner[i] = -1;
 
+            // bonus (-2)
+            HouseOwner[7] = -2;
+            HouseOwner[40] = -2;
+
+
+
+            // lose (-3)
+            HouseOwner[16] = -3;
+            HouseOwner[36] = -3;
+
+
+
+            // move forward (-4) or backward (-5)
+            HouseOwner[9] = -4; // backward
+            HouseOwner[39] = -4; // backward
+
+            HouseOwner[20] = -5; // forward
+
+
+
+
+            // luck houses (-6)
+            HouseOwner[14] = -6;
+            HouseOwner[21] = -6;
+            HouseOwner[32] = -6;
+
+
         }
         public static Point InitialPoisition
         {
@@ -146,7 +177,11 @@ namespace rich_uncle
         public static Semaphore rollDiceLock = new Semaphore(0, 1);
         public static Semaphore waitDecideBuyLock = new Semaphore(0, 1);
 
+        public static Semaphore chooseTurnLock = new Semaphore(0, 1);
+
         public static Semaphore[] housesLock; // for players to get a position to sit on the house
+
+        public static Semaphore[] playerMoveLock;
 
     }
 }
