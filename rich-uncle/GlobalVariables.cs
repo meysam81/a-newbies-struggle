@@ -57,16 +57,22 @@ namespace rich_uncle
         }
         public static short[] HouseOwner { get; set; }
         public static ushort FinishRoundBonus { get; set; }
-
+        public static House[] housesInTheGame;
         // ================================== class public functions ========================================
         public GlobalVariables(FormMain form)
         {
+
+            housesLock = new Semaphore[NumberOfHouses + 1]; // [0 - 40] because arrays start from zero
+            housesInTheGame = new House[NumberOfHouses + 1]; // [0 - 40] because arrays start from zero
+
             buyHouse = new ushort[NumberOfHouses + 1];
             rentHouse = new ushort[NumberOfHouses + 1];
             houseColors = new Color[NumberOfHouses + 1]; // ignore 0, go through 1-40
             Random rnd = new Random(DateTime.Now.Second);
             for (int i = 1; i <= NumberOfHouses; i++)
             {
+                housesLock[i] = new Semaphore(1, 1);
+
                 buyHouse[i] = (ushort)rnd.Next(lowerBoundOfBuyingHouses, upperBoundOfBuyingHouses + 1);
                 rentHouse[i] = (ushort)rnd.Next(lowerBoundOfRentingHouses, upperBoundOfRentingHouses + 1);
             }
@@ -139,6 +145,8 @@ namespace rich_uncle
         public static Semaphore initPosLock = new Semaphore(1, 1);
         public static Semaphore rollDiceLock = new Semaphore(0, 1);
         public static Semaphore waitDecideBuyLock = new Semaphore(0, 1);
+
+        public static Semaphore[] housesLock; // for players to get a position to sit on the house
 
     }
 }

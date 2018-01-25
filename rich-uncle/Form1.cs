@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
@@ -125,11 +126,14 @@ namespace rich_uncle
         }
         private void buttonStart_Click(object sender, EventArgs e)
         {
+            GlobalVariables glv = new GlobalVariables(this);
+
             if (!init())
                 return;
 
 
-            GlobalVariables glv = new GlobalVariables(this);
+
+            initializeHouses();
 
             paintHouses(); // rondom colorization of 40 houses
             showNamesAndPrices();
@@ -155,6 +159,8 @@ namespace rich_uncle
 
             buttonStart.Enabled = false;
             buttonStart.Visible = false;
+
+            AcceptButton = buttonRollTheDice;
 
         }
         // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
@@ -191,7 +197,141 @@ namespace rich_uncle
                 }
             }
 
+            
             return true;
+            
+        }
+        private void initializeHouses()
+        {
+            
+            for (ushort number = 1; number <= NumberOfHouses; number++)
+            {
+                switch (number)
+                {
+                    case 1:
+                        housesInTheGame[number] = new House(label1, number);
+                        break;
+                    case 2:
+                        housesInTheGame[number] = new House(label2, number);
+                        break;
+                    case 3:
+                        housesInTheGame[number] = new House(label3, number);
+                        break;
+                    case 4:
+                        housesInTheGame[number] = new House(label4, number);
+                        break;
+                    case 5:
+                        housesInTheGame[number] = new House(label5, number);
+                        break;
+                    case 6:
+                        housesInTheGame[number] = new House(label6, number);
+                        break;
+                    case 7:
+                        housesInTheGame[number] = new House(label7, number);
+                        break;
+                    case 8:
+                        housesInTheGame[number] = new House(label8, number);
+                        break;
+                    case 9:
+                        housesInTheGame[number] = new House(label9, number);
+                        break;
+                    case 10:
+                        housesInTheGame[number] = new House(label10, number);
+                        break;
+                    case 11:
+                        housesInTheGame[number] = new House(label11, number);
+                        break;
+                    case 12:
+                        housesInTheGame[number] = new House(label12, number);
+                        break;
+                    case 13:
+                        housesInTheGame[number] = new House(label13, number);
+                        break;
+                    case 14:
+                        housesInTheGame[number] = new House(label14, number);
+                        break;
+                    case 15:
+                        housesInTheGame[number] = new House(label15, number);
+                        break;
+                    case 16:
+                        housesInTheGame[number] = new House(label16, number);
+                        break;
+                    case 17:
+                        housesInTheGame[number] = new House(label17, number);
+                        break;
+                    case 18:
+                        housesInTheGame[number] = new House(label18, number);
+                        break;
+                    case 19:
+                        housesInTheGame[number] = new House(label19, number);
+                        break;
+                    case 20:
+                        housesInTheGame[number] = new House(label20, number);
+                        break;
+                    case 21:
+                        housesInTheGame[number] = new House(label21, number);
+                        break;
+                    case 22:
+                        housesInTheGame[number] = new House(label22, number);
+                        break;
+                    case 23:
+                        housesInTheGame[number] = new House(label23, number);
+                        break;
+                    case 24:
+                        housesInTheGame[number] = new House(label24, number);
+                        break;
+                    case 25:
+                        housesInTheGame[number] = new House(label24, number);
+                        break;
+                    case 26:
+                        housesInTheGame[number] = new House(label26, number);
+                        break;
+                    case 27:
+                        housesInTheGame[number] = new House(label27, number);
+                        break;
+                    case 28:
+                        housesInTheGame[number] = new House(label28, number);
+                        break;
+                    case 29:
+                        housesInTheGame[number] = new House(label29, number);
+                        break;
+                    case 30:
+                        housesInTheGame[number] = new House(label30, number);
+                        break;
+                    case 31:
+                        housesInTheGame[number] = new House(label31, number);
+                        break;
+                    case 32:
+                        housesInTheGame[number] = new House(label32, number);
+                        break;
+                    case 33:
+                        housesInTheGame[number] = new House(label33, number);
+                        break;
+                    case 34:
+                        housesInTheGame[number] = new House(label34, number);
+                        break;
+                    case 35:
+                        housesInTheGame[number] = new House(label35, number);
+                        break;
+                    case 36:
+                        housesInTheGame[number] = new House(label36, number);
+                        break;
+                    case 37:
+                        housesInTheGame[number] = new House(label37, number);
+                        break;
+                    case 38:
+                        housesInTheGame[number] = new House(label38, number);
+                        break;
+                    case 39:
+                        housesInTheGame[number] = new House(label39, number);
+                        break;
+                    case 40:
+                        housesInTheGame[number] = new House(label40, number);
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
         // main function of this class leis here as it rolls the dice and give turn to players
         private void chooseTurn()
@@ -240,6 +380,8 @@ namespace rich_uncle
                 buyCurrentHouse(turns[0], playersName[turns[0]],
                     nextPosition); // should we buy?
 
+
+                currentDice = p[turns[0]].NumberOfMovements;
 
                 if (currentDice == 6)
                     countTurns = 0;
@@ -708,14 +850,14 @@ namespace rich_uncle
             changeButtonDice(true, Color.SaddleBrown);
             rollDiceLock.WaitOne();
 
-            Random generateRandom = new Random(DateTime.Now.Second);
             short result = 0;
 
 
+            Random generateRandom = new Random(DateTime.Now.Second);
             diceSound.Play(); // dice sound
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 60; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
                 colorizeDiceRoller(back, result);

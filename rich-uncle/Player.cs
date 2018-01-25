@@ -94,10 +94,10 @@ namespace rich_uncle
                 if (CurrentHouse == 0) // before the game starts
                 {
                     CurrentHouse = numberOfMovements; // now we are at a new position
-                    
 
 
-                    dest = mainForm.getHouseLocation(CurrentHouse);
+
+                    dest = housesInTheGame[currentHouse].HouseLocation;
 
 
                     move((short)(posX + 11), posY, direction.RIGHT);
@@ -114,7 +114,7 @@ namespace rich_uncle
                     CurrentHouse += numberOfMovements; // now we are at a new position
                     CurrentHouse %= 40;
 
-                    dest = mainForm.getHouseLocation(CurrentHouse);
+                    dest = housesInTheGame[currentHouse].HouseLocation;
 
                     move(posX, 5, direction.UP);
                     move(560, posY, direction.RIGHT);
@@ -126,7 +126,7 @@ namespace rich_uncle
                 {
                     CurrentHouse += numberOfMovements; // now we are at a new position
 
-                    dest = mainForm.getHouseLocation(CurrentHouse);
+                    dest = housesInTheGame[currentHouse].HouseLocation;
 
                     if (dest.Y < posY)
                     {
