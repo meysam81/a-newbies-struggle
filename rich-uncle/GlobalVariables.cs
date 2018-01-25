@@ -131,7 +131,7 @@ namespace rich_uncle
             HouseOwner = new short[NumberOfHouses + 1];
             for (short i = 1; i <= NumberOfHouses; i++)
                 HouseOwner[i] = -1;
-
+            // ================================ CHANGE =============================
             // bonus (-2)
             HouseOwner[7] = -2;
             HouseOwner[40] = -2;

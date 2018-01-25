@@ -812,6 +812,7 @@ namespace rich_uncle
                     {
                         int tmp1 = Convert.ToInt32(item);
                         playerPoints[i] += tmp1;
+                        // ================================ CHANGE =============================
                     }
                     catch (Exception)
                     {
