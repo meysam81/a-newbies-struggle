@@ -808,6 +808,7 @@
             // labelShow5
             // 
             this.labelShow5.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelShow5.Font = new System.Drawing.Font("Microsoft Sans Serif", 6.5F);
             this.labelShow5.Location = new System.Drawing.Point(6, 16);
             this.labelShow5.Name = "labelShow5";
             this.labelShow5.Size = new System.Drawing.Size(158, 51);

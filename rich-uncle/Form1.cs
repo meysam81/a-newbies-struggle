@@ -159,7 +159,7 @@ namespace rich_uncle
 
             buttonStart.Enabled = false;
             buttonStart.Visible = false;
-            
+
         }
         // following are the values initialized in getInfo Form, and we validate by 'gotInfo'
         private bool init() // get config's from user
@@ -468,14 +468,26 @@ namespace rich_uncle
                     {
                         nextPosition %= 40;
 
-                        changeGroupBuyButtons(false, BackColor, Color.LightGray,
-                            string.Format("Player {0} passed one round and got {1} from bank!",
-                            playersName[currentTurn], FinishRoundBonus));
+
+                        // we cant have negative number in the bank
+                        if (BankDeposit - FinishRoundBonus >= 0) // check for integrity of the bank
+                        {
+                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                string.Format("Player {0} passed one round and got {1} from bank!",
+                                playersName[currentTurn], FinishRoundBonus));
 
 
-                        BankDeposit -= FinishRoundBonus; // get from bank ...
-                        p[currentTurn].PlayerDeposit += // ... get it to the player
-                            (short)FinishRoundBonus;
+                            BankDeposit -= FinishRoundBonus; // get from bank ...
+                            p[currentTurn].PlayerDeposit += // ... get it to the player
+                                (short)FinishRoundBonus;
+                        }
+                        else
+                        {
+                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                string.Format("Player {0} passed one round, but bank money can't become empty," +
+                                " so no bonus!",
+                                playersName[currentTurn]));
+                        }
                     }
 
 
@@ -513,12 +525,24 @@ namespace rich_uncle
                                         break;
                                 }
 
-                                changeGroupBuyButtons(false, BackColor, Color.LightGray,
-                                            string.Format("Player {0} won {1} as a bonus",
-                                            playersName[currentTurn], amount));
 
-                                BankDeposit -= (ushort)amount;
-                                p[currentTurn].PlayerDeposit += (short)amount;
+                                if (BankDeposit - amount >= 0)
+                                {
+                                    changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                                string.Format("Player {0} won {1} as a bonus",
+                                                playersName[currentTurn], amount));
+
+                                    BankDeposit -= (ushort)amount;
+                                    p[currentTurn].PlayerDeposit += amount;
+                                }
+                                else
+                                {
+                                    changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                        string.Format("Player {0} is in a bonus house, " +
+                                        "but bank money can't become empty," +
+                                        " so no bonus!",
+                                        playersName[currentTurn]));
+                                }
                                 break;
 
 
@@ -646,12 +670,21 @@ namespace rich_uncle
                                         if (currentDice % 2 == 0) // even
                                         {
                                             stillMove = false;
-                                            changeGroupBuyButtons(false, BackColor, Color.LightGray,
-                                            string.Format("Player {0} won 1500 points",
-                                            playersName[currentTurn]));
+                                            if (BankDeposit - 1500 >= 0)
+                                            {
+                                                changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                                string.Format("Player {0} won 1500 points",
+                                                playersName[currentTurn]));
 
-                                            BankDeposit -= 1500;
-                                            p[currentTurn].PlayerDeposit += 1500;
+                                                BankDeposit -= 1500;
+                                                p[currentTurn].PlayerDeposit += 1500;
+                                            }
+                                            else
+                                            {
+                                                changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                                                    string.Format("Player {0} should get a bonus," +
+                                                    "but bank money can't become empty, so no bonus!"));
+                                            }
 
                                         }
                                         else // otherwise; go backward
