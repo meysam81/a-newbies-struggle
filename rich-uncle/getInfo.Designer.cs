@@ -133,7 +133,7 @@
             this.bankDeposit.Size = new System.Drawing.Size(120, 20);
             this.bankDeposit.TabIndex = 1;
             this.bankDeposit.Value = new decimal(new int[] {
-            15000,
+            10000,
             0,
             0,
             0});
@@ -155,7 +155,7 @@
             this.playerInitDeposit.Size = new System.Drawing.Size(120, 20);
             this.playerInitDeposit.TabIndex = 2;
             this.playerInitDeposit.Value = new decimal(new int[] {
-            5000,
+            6000,
             0,
             0,
             0});
@@ -186,7 +186,7 @@
             this.finishRoundBonus.Size = new System.Drawing.Size(120, 20);
             this.finishRoundBonus.TabIndex = 3;
             this.finishRoundBonus.Value = new decimal(new int[] {
-            800,
+            1000,
             0,
             0,
             0});
