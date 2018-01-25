@@ -748,7 +748,6 @@
             // labelOwners0
             // 
             this.labelOwners0.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelOwners0.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelOwners0.Location = new System.Drawing.Point(631, 207);
             this.labelOwners0.Name = "labelOwners0";
             this.labelOwners0.Size = new System.Drawing.Size(27, 184);
@@ -758,7 +757,6 @@
             // labelOwners1
             // 
             this.labelOwners1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelOwners1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelOwners1.Location = new System.Drawing.Point(660, 207);
             this.labelOwners1.Name = "labelOwners1";
             this.labelOwners1.Size = new System.Drawing.Size(27, 184);
@@ -768,7 +766,6 @@
             // labelOwners2
             // 
             this.labelOwners2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelOwners2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelOwners2.Location = new System.Drawing.Point(689, 207);
             this.labelOwners2.Name = "labelOwners2";
             this.labelOwners2.Size = new System.Drawing.Size(27, 184);
@@ -778,7 +775,6 @@
             // labelOwners3
             // 
             this.labelOwners3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelOwners3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.labelOwners3.Location = new System.Drawing.Point(718, 207);
             this.labelOwners3.Name = "labelOwners3";
             this.labelOwners3.Size = new System.Drawing.Size(27, 184);

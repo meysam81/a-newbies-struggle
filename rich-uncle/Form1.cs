@@ -170,6 +170,27 @@ namespace rich_uncle
                 return false;
             }
 
+            for (ushort i = 0; i < NumberOfPlayers; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        labelOwners0.BorderStyle = BorderStyle.FixedSingle;
+                        break;
+                    case 1:
+                        labelOwners1.BorderStyle = BorderStyle.FixedSingle;
+                        break;
+                    case 2:
+                        labelOwners2.BorderStyle = BorderStyle.FixedSingle;
+                        break;
+                    case 3:
+                        labelOwners3.BorderStyle = BorderStyle.FixedSingle;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
             return true;
         }
         // main function of this class leis here as it rolls the dice and give turn to players
