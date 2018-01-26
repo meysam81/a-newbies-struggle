@@ -279,7 +279,7 @@ namespace rich_uncle
                         housesInTheGame[number] = new House(label24, number);
                         break;
                     case 25:
-                        housesInTheGame[number] = new House(label24, number);
+                        housesInTheGame[number] = new House(label25, number);
                         break;
                     case 26:
                         housesInTheGame[number] = new House(label26, number);
@@ -419,7 +419,7 @@ namespace rich_uncle
 
                     // check for game end
                     for (ushort i = 1; i <= NumberOfHouses; i++)
-                        if (HouseOwner[i] < 0) // game still continues; houses are left to buy
+                        if (HouseOwner[i] == -1) // game still continues; houses are left to buy
                         {
                             gameFinished = false;
                             break;
@@ -811,12 +811,11 @@ namespace rich_uncle
                     try
                     {
                         int tmp1 = Convert.ToInt32(item);
-                        playerPoints[i] += tmp1;
-                        // ================================ CHANGE =============================
+                        playerPoints[i] += BuyHouse[tmp1];
                     }
-                    catch (Exception)
+                    catch (Exception ex)
                     {
-
+                        
                     }
 
                 }
@@ -907,9 +906,12 @@ namespace rich_uncle
         private void rentHouse(short playerIndex, string playerName,
             short houseToBeBougth, string ownerName, short ownerNumber)
         {
-            changeGroupBuyButtons(false, BackColor, Color.LightGray,
-                            string.Format("Player {0} rented house {1} from {2} for {3}",
-                            playerName, houseToBeBougth, ownerName, RentHouse[houseToBeBougth]));
+
+            // dont rent from self
+            if (playerIndex == ownerNumber)
+                return;
+
+            
 
             ushort cost = 0;
 
@@ -921,6 +923,11 @@ namespace rich_uncle
                 cost = p[ownerNumber].OwnedRedHouses;
             else if (HouseColors[houseToBeBougth] == Color.Yellow)
                 cost = p[ownerNumber].OwnedYellowHouses;
+
+
+            changeGroupBuyButtons(false, BackColor, Color.LightGray,
+                            string.Format("Player {0} rented house {1} from {2} for {3}",
+                            playerName, houseToBeBougth, ownerName, cost));
 
             p[playerIndex].PlayerDeposit -= (short)cost;
             p[ownerNumber].PlayerDeposit += (short)RentHouse[houseToBeBougth];
@@ -1151,7 +1158,7 @@ namespace rich_uncle
             diceSound.Play(); // dice sound
 
 
-            for (int i = 0; i < 100; i++)
+            for (int i = 0; i < 77; i++)
             {
                 result = (short)generateRandom.Next(1, 7);
                 colorizeDiceRoller(back, result);
